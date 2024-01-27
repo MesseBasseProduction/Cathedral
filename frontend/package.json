@@ -51,10 +51,5 @@
         "prettier-eslint": "^16.3.0",
         "pretty-quick": "^4.0.0",
         "typescript": "~5.3.2"
-    },
-    "resoltuions": {
-        "vite": {
-            "rollup": "npm:@rollup/rollup-linux-arm64-musl"
-        }
     }
 }
