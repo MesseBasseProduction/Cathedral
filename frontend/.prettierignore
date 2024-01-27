@@ -1,0 +1,10 @@
+*/node_modules
+*.log*
+frontend/.nuxt
+frontend/.nitro
+frontend/.cache
+frontend/.output
+.env
+frontend/dist
+*/.DS_Store
+.idea
