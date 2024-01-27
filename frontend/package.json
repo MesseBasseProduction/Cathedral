@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,8 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
+    "@angular-builders/custom-webpack": "^17.0.0",
     "@angular/animations": "^17.1.0",
     "@angular/common": "^17.1.0",
     "@angular/compiler": "^17.1.0",
@@ -34,5 +35,10 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.3.2"
+  },
+  "resoltuions": {
+    "vite": {
+      "rollup": "npm:@rollup/rollup-linux-arm64-musl"
+    }
   }
 }
