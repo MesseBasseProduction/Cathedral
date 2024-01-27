@@ -6335,6 +6335,13 @@ pretty-quick@^4.0.0:
     picomatch "^3.0.1"
     tslib "^2.6.2"
 
+primeng@^17.4.0:
+  version "17.4.0"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-17.4.0.tgz#cfcb9c2819ae79be2618d58e8e8b02d861248d29"
+  integrity sha512-fqIFXORQjfTZFepg1MBz/vqheMjHy104ugxuTT1BCzEbVsjc2bjVyedEsS3u+N7bYag7TLMvv/FjzbTAq6hzOw==
+  dependencies:
+    tslib "^2.3.0"
+
 proc-log@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/proc-log/-/proc-log-3.0.0.tgz#fb05ef83ccd64fd7b20bbe9c8c1070fc08338dd8"

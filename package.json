@@ -7,7 +7,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "docker:build": "docker compose --env-file ./.conf/development/conf.env build",
+    "docker:up": "docker compose --env-file ./.conf/development/conf.env up"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.6.0",
