@@ -1,0 +1,115 @@
+name: mbp_cathedral
+
+services:
+  frontend:
+    profiles:
+      - deploy
+    container_name: ${FRONTEND_NAME}
+    hostname: ${FRONTEND_NAME}
+    image: MesseBasseProduction/Cathedral-front
+    build:
+      context: .
+      dockerfile: ./.conf/development/frontend/Dockerfile
+      args:
+        ARG_PORT: ${FRONTEND_PORT}
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+    volumes:
+      - type: volume
+        source: mbp_cathedral_frontend_data
+        target: /frontend
+    networks:
+      - mbp_cathedral_network
+
+  backend:
+    profiles:
+      - deploy
+    container_name: ${BACKEND_NAME}
+    hostname: ${BACKEND_NAME}
+    build:
+      context: .
+      dockerfile: ./.conf/development/backend/Dockerfile
+    image: MesseBasseProduction/Cathedral-back
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    environment:
+      SECRET_KEY: ${BACKEND_SECRET_KEY}
+      DEBUG: ${BACKEND_DEBUG}
+      ALLOWED_HOSTS: ${BACKEND_ALLOWED_HOSTS}
+      CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+    volumes:
+      - type: volume
+        source: mbp_cathedral_backend_data
+        target: /backend
+    depends_on:
+      db:
+        condition: service_healthy
+        required: true
+        restart: true
+    networks:
+      - mbp_cathedral_network
+
+  db:
+    profiles:
+      - deploy
+      - dev
+    image: postgres:${DB_POSTGRES_VERSION}
+    container_name: ${DB_HOST}
+    hostname: ${DB_HOST}
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGPORT: ${DB_PORT}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - type: volume
+        source: mbp_cathedral_pg_data
+        target: /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "${DB_NAME}"]
+      interval: 5s
+      timeout: 20s
+      retries: 5
+      start_period: 5s
+    networks:
+      - mbp_cathedral_network
+
+  adminer:
+    profiles:
+      - deploy
+      - dev
+    container_name: ${DB_ADMINER_NAME}
+    hostname: ${DB_ADMINER_NAME}
+    image: adminer
+    ports:
+      - ${DB_ADMINER_PORT}:8080
+    depends_on:
+      db:
+        condition: service_healthy
+        required: true
+        restart: true
+    networks:
+      - mbp_cathedral_network
+
+volumes:
+  mbp_cathedral_frontend_data:
+    name: mbp_cathedral_frontend_data
+  mbp_cathedral_backend_data:
+    name: mbp_cathedral_backend_data
+  mbp_cathedral_pg_data:
+    name: mbp_cathedral_pg_data
+
+networks:
+  mbp_cathedral_network:
+    name: mbp_cathedral_network
