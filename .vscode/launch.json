@@ -1,0 +1,30 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Django",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/manage.py",
+      "args": [
+        "runserver"
+      ],
+      "env": {
+        "DEBUG": "1",
+        "ALLOWED_HOSTS": "*",
+        "SECRET_KEY": "fx!c7of))(xs+-k)%+k=i)%r5nrtdnzgi^t13bv24v=dvlsv=",
+        "CSRF_TRUSTED_ORIGINS": "http://localhost:8080;http://127.0.0.1:8080",
+        "DB_HOST": "cathedral_db",
+        "DB_PORT": "5432",
+        "DB_NAME": "cathedral",
+        "DB_USER": "postgres",
+        "DB_PASSWORD": "postgres"
+      },
+      "django": true,
+      "justMyCode": true
+    }
+  ]
+}

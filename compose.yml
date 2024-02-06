@@ -4,6 +4,7 @@ services:
   frontend:
     profiles:
       - deploy
+      - dev
     container_name: ${FRONTEND_NAME}
     hostname: ${FRONTEND_NAME}
     image: MesseBasseProduction/Cathedral-front
@@ -15,8 +16,8 @@ services:
     ports:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
     volumes:
-      - type: volume
-        source: mbp_cathedral_frontend_data
+      - type: bind
+        source: ./frontend
         target: /frontend
     networks:
       - mbp_cathedral_network
@@ -24,6 +25,7 @@ services:
   backend:
     profiles:
       - deploy
+      - dev
     container_name: ${BACKEND_NAME}
     hostname: ${BACKEND_NAME}
     build:
@@ -47,9 +49,9 @@ services:
     ports:
       - ${BACKEND_PORT}:${BACKEND_PORT}
     volumes:
-      - type: volume
-        source: mbp_cathedral_backend_data
-        target: /backend
+      - type: bind
+        source: ./backend
+        target: backend
     depends_on:
       db:
         condition: service_healthy
@@ -103,10 +105,6 @@ services:
       - mbp_cathedral_network
 
 volumes:
-  mbp_cathedral_frontend_data:
-    name: mbp_cathedral_frontend_data
-  mbp_cathedral_backend_data:
-    name: mbp_cathedral_backend_data
   mbp_cathedral_pg_data:
     name: mbp_cathedral_pg_data
 
