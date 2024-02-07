@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,6 +32,8 @@ ALLOWED_HOSTS.extend(filter(None, os.environ.get('ALLOWED_HOSTS', '').split(';')
 CSRF_TRUSTED_ORIGINS = []
 CSRF_TRUSTED_ORIGINS.extend(filter(None, os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(';')))
 
+SERVER_URL = os.environ.get('SERVER_URL')
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'knox',
     'django_filters',
     'corsheaders',
     'app',
@@ -98,19 +102,42 @@ AUTH_USER_MODEL = 'authentication.User'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {'NAME': 'authentication.validators.DigitValidator', },
+    {'NAME': 'authentication.validators.UppercaseValidator', },
+    {'NAME': 'authentication.validators.SpecialCharacterValidator', },
 ]
+
+AUTHENTICATION_BACKENDS = ['authentication.backend_authentication.email_backend.EmailBackend']
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ['knox.auth.TokenAuthentication'],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
+
+REST_KNOX = {
+    'TOKEN_TTL': timedelta(weeks=1),
+    'AUTO_REFRESH': True,
+    'AUTH_HEADER_PREFIX': 'Bearer',
+}
+
+EXTENDED_PAGINATION_DEFAULT_SIZE = 20
+EXTENDED_PAGINATION_DEFAULT_SIZE_QUERY_PARAM = 'size'
+
+# Email
+DEFAULT_FROM_EMAIL = '"Cathedral" <no-reply@messe-basse-production.com>'
+
+if bool(int(os.environ.get('BACKEND_USE_EMAIL_FILE_SYSTEM', 1))):
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'tmp/email')
+else:
+    EMAIL_BACKEND = 'django_mailjet.backends.MailjetBackend'
+    MAILJET_API_KEY = os.environ.get('MAILJET_API_KEY')
+    MAILJET_API_SECRET = os.environ.get('MAILJET_API_SECRET')
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
