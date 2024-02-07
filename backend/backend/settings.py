@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'app',
     'authentication',
+    'messe_basse_production',
 ]
 
 MIDDLEWARE = [
