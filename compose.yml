@@ -7,7 +7,7 @@ services:
       - dev
     container_name: ${FRONTEND_NAME}
     hostname: ${FRONTEND_NAME}
-    image: MesseBasseProduction/Cathedral-front
+    image: MesseBasseProduction/cathedral-front
     build:
       context: .
       dockerfile: ./.conf/development/frontend/Dockerfile
@@ -16,9 +16,7 @@ services:
     ports:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
     volumes:
-      - type: bind
-        source: ./frontend
-        target: /frontend
+      - ./frontend:/frontend
     networks:
       - mbp_cathedral_network
 
@@ -31,7 +29,7 @@ services:
     build:
       context: .
       dockerfile: ./.conf/development/backend/Dockerfile
-    image: MesseBasseProduction/Cathedral-back
+    image: MesseBasseProduction/cathedral-back
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -49,9 +47,7 @@ services:
     ports:
       - ${BACKEND_PORT}:${BACKEND_PORT}
     volumes:
-      - type: bind
-        source: ./backend
-        target: backend
+      - ./backend:/backend
     depends_on:
       db:
         condition: service_healthy

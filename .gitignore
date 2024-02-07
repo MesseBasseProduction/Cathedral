@@ -62,3 +62,6 @@ wheels/
 .installed.cfg
 *.egg
 *.pyc
+
+# Temp files
+backend/tmp

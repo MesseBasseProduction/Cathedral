@@ -6,7 +6,7 @@
   "configurations": [
     {
       "name": "Python: Django",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/backend/manage.py",
       "args": [
@@ -21,7 +21,10 @@
         "DB_PORT": "5432",
         "DB_NAME": "cathedral",
         "DB_USER": "postgres",
-        "DB_PASSWORD": "postgres"
+        "DB_PASSWORD": "postgres",
+        "BACKEND_USE_EMAIL_FILE_SYSTEM": "1",
+        "MAILJET_API_KEY": "*",
+        "MAILJET_API_SECRET": "*"
       },
       "django": true,
       "justMyCode": true
