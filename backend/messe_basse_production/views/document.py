@@ -2,7 +2,7 @@ from rest_framework import viewsets
 
 from app.pagination import ExtendedPageNumberPagination
 from messe_basse_production.models import Document
-from messe_basse_production.serializers.document import DocumentSerializer, DocumentPostOrPatchSerializer
+from messe_basse_production.serializers import DocumentSerializer, DocumentPostOrPatchSerializer
 
 
 class DocumentViewSet(viewsets.ModelViewSet):
