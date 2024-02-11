@@ -4,21 +4,19 @@ from django.db import models
 from django.dispatch import receiver
 
 
-class Member(models.Model):
+class Document(models.Model):
     name = models.CharField(max_length=50)
-    role = models.CharField(max_length=50)
-    leader = models.BooleanField()
-    active = models.BooleanField(default=True)
-    image = models.ImageField(upload_to='images/member/')
+    file = models.FileField(upload_to='documents')
+    date = models.DateField()
 
 
-@receiver(models.signals.pre_save, sender=Member)
+@receiver(models.signals.pre_save, sender=Document)
 def pre_save_image(sender, instance, **kwargs):
     try:
-        old_image = sender.objects.get(id=instance.id).image
+        old_image = sender.objects.get(id=instance.id).file
     except sender.DoesNotExist:
         old_image = None
-    new_image = instance.image
+    new_image = instance.file
     if not old_image or not new_image:
         return
 
@@ -27,6 +25,6 @@ def pre_save_image(sender, instance, **kwargs):
             os.remove(old_image.path)
 
 
-@receiver(models.signals.post_delete, sender=Member)
+@receiver(models.signals.post_delete, sender=Document)
 def post_delete_profile_picture(sender, instance, **kwargs):
-    instance.image.delete(save=False)
+    instance.file.delete(save=False)
