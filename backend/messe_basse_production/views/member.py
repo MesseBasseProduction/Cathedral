@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from app.pagination import ExtendedPageNumberPagination
-from messe_basse_production.models.member import Member
+from messe_basse_production.models import Member
 from messe_basse_production.serializers.member import MemberPostOrPatchSerializer, MemberSerializer
 
 

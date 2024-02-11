@@ -4,3 +4,4 @@ django-cors-headers ~= 4.3
 djangorestframework ~= 3.14
 django-filter ~= 23.5
 django-rest-knox==4.*
+Pillow ~= 10.2
