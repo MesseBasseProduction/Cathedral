@@ -1,5 +1,6 @@
 DC_PROFILE := dev
 DC_ENV_FILE := .conf/development/conf.env
+DC_LF_SERVICE := frontend backend
 
 .PHONY: dcbuild
 dcbuild:
@@ -13,13 +14,13 @@ dcupd:
 dcstop:
 	docker compose --env-file $(DC_ENV_FILE) --profile $(DC_PROFILE) stop
 
-.PHONY: dcdown
-dcdown:
+.PHONY: dcdn
+dcdn:
 	docker compose --env-file $(DC_ENV_FILE) --profile $(DC_PROFILE) down
 
 .PHONY: dclf
 dclf:
-	docker compose --env-file $(DC_ENV_FILE) --profile $(DC_PROFILE) logs -f
+	docker compose --env-file $(DC_ENV_FILE) --profile $(DC_PROFILE) logs -f $(DC_LF_SERVICE)
 
 .PHONY: dcpull
 dcpull:

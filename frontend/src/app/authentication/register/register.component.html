@@ -1,0 +1,67 @@
+@switch (registerService.status()) {
+    @case ('inprogress') {
+        <div>spinner</div>
+    }
+    @case ('success') {
+        <div>
+            <p>Registration successfull, check your inbox for the activation link</p>
+            <button routerLink="/auth/login">Return to Home</button>
+        </div>
+    }
+    @default {
+        <form [formGroup]="registerForm">
+            <div>
+                <label for="email">Email</label>
+                <input id="email" type="email" formControlName="email" />
+                @if (
+                    controls.email.dirty &&
+                    controls.email.hasError('emailUnique')
+                ) {
+                    <span>Email already in use</span>
+                }
+            </div>
+            <div>
+                <label for="username">Username</label>
+                <input id="username" type="text" formControlName="username" />
+                @if (
+                    controls.username.dirty &&
+                    controls.username.hasError('usernameUnique')
+                ) {
+                    <span>Username already in use</span>
+                }
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input id="password" type="password" formControlName="password" />
+                @if (
+                    controls.password.dirty &&
+                    controls.password.hasError('pattern')
+                ) {
+                    <span>Password must contain:
+                        <ul>
+                            <li>at least 12 characters</li>
+                            <li>at least one lowercase character</li>
+                            <li>at least one uppercase character</li>
+                            <li>at least one number</li>
+                            <li>at least one charachter from the following list: !&#64;$%*^&</li>
+                        </ul>
+                    </span>
+                }
+            </div>
+            <div>
+                <label for="confirm">Confirm password</label>
+                <input id="confirm" type="password" formControlName="confirm" />
+                @if (
+                    controls.password.dirty &&
+                    controls.confirm.dirty &&
+                    registerForm.hasError('passwordMatch')
+                ) {
+                    <span>Passwords must match</span>
+                }
+            </div>
+            <button type="submit" (click)="onSubmit()" [disabled]="!registerForm.valid">
+                Submit
+            </button>
+        </form>
+    }
+}
