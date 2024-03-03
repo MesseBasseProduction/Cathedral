@@ -4,15 +4,15 @@ from django.db import models
 from django.dispatch import receiver
 
 
-class Member(models.Model):
-    name = models.CharField(max_length=50)
-    role = models.CharField(max_length=50)
-    leader = models.BooleanField()
-    active = models.BooleanField(default=True)
-    image = models.ImageField(upload_to='images/member/')
+class EventPhoto(models.Model):
+    name = models.CharField(max_length=150)
+    photographer = models.CharField(max_length=150)
+    image = models.ImageField(upload_to='images/event_photo/')
+    url = models.URLField()
+    order = models.PositiveIntegerField(default=1)
 
 
-@receiver(models.signals.pre_save, sender=Member)
+@receiver(models.signals.pre_save, sender=EventPhoto)
 def pre_save_image(sender, instance, **kwargs):
     try:
         old_image = sender.objects.get(id=instance.id).image
@@ -27,6 +27,6 @@ def pre_save_image(sender, instance, **kwargs):
             os.remove(old_image.path)
 
 
-@receiver(models.signals.post_delete, sender=Member)
+@receiver(models.signals.post_delete, sender=EventPhoto)
 def post_delete_image(sender, instance, **kwargs):
     instance.image.delete(save=False)

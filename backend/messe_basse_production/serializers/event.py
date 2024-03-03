@@ -29,7 +29,6 @@ class EventParticipantSerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-
     descriptions = EventDescriptionSerializer(many=True)
     participants = EventParticipantSerializer(many=True)
     image = serializers.CharField()
@@ -86,4 +85,4 @@ class EventSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('ERROR_MIN_SIZE')
 
         # Todo : add validation on image size
-        return compress_image(resize_image(image), name=f'${uuid.uuid4().hex}.webp')
+        return compress_image(resize_image(image, (1024, 525)), name=f'${uuid.uuid4().hex}.webp')

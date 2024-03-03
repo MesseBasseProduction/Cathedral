@@ -34,7 +34,7 @@ def pre_save_image(sender, instance, **kwargs):
 
 
 @receiver(models.signals.post_delete, sender=Event)
-def post_delete_profile_picture(sender, instance, **kwargs):
+def post_delete_image(sender, instance, **kwargs):
     instance.image.delete(save=False)
 
 

@@ -26,5 +26,5 @@ def pre_save_image(sender, instance, **kwargs):
 
 
 @receiver(models.signals.post_delete, sender=Document)
-def post_delete_profile_picture(sender, instance, **kwargs):
+def post_delete_file(sender, instance, **kwargs):
     instance.file.delete(save=False)
