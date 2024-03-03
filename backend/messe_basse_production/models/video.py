@@ -6,3 +6,6 @@ class Video(models.Model):
     artist = models.CharField(max_length=150)
     date = models.DateField()
     url = models.URLField()
+
+    class Meta:
+        ordering = ('-date',)

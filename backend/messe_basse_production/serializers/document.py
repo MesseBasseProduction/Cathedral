@@ -4,6 +4,7 @@ from app.serializers.common import ReadOnlyModelSerializer
 from messe_basse_production.models import Document
 
 
+# Todo : merge two serializer
 class DocumentSerializer(ReadOnlyModelSerializer):
     class Meta:
         model = Document
