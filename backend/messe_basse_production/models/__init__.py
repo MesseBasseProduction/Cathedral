@@ -1,3 +1,5 @@
+from .album import Album
+from .apparel import Apparel
 from .document import Document
 from .event import Event, EventDescription, EventParticipant
 from .event_photo import EventPhoto

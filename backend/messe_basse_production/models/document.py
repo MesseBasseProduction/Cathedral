@@ -5,7 +5,7 @@ from messe_basse_production.signals import remove_old_image, remove_deleted_imag
 
 class Document(models.Model):
     name = models.CharField(max_length=50)
-    file = models.FileField(upload_to='documents/')
+    file = models.FileField(upload_to='document/')
     date = models.DateField()
 
 

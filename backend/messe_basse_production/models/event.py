@@ -7,7 +7,7 @@ from messe_basse_production.signals import remove_old_image, remove_deleted_imag
 class Event(models.Model):
     name = models.CharField(max_length=150)
     catalog = models.CharField(max_length=150)
-    image = models.ImageField(upload_to='images/events/')
+    image = models.ImageField(upload_to='images/event/')
     date = models.DateField()
     place = models.CharField(max_length=150)
     link = models.URLField()

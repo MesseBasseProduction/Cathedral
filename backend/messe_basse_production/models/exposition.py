@@ -10,7 +10,7 @@ class Exposition(models.Model):
 
 
 def get_exposition_photo_path(instance, filename):
-    return f'images/expositions/{instance.exposition.pk}/{filename}'
+    return f'images/exposition/{instance.exposition.pk}/{filename}'
 
 
 class ExpositionPhoto(models.Model):
