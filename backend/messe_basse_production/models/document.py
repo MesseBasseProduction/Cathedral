@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 class Document(models.Model):
     name = models.CharField(max_length=50)
-    file = models.FileField(upload_to='documents')
+    file = models.FileField(upload_to='documents/')
     date = models.DateField()
 
 
