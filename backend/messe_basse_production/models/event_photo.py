@@ -1,7 +1,6 @@
-import os
-
 from django.db import models
-from django.dispatch import receiver
+
+from messe_basse_production.signals import remove_old_image, remove_deleted_image
 
 
 class EventPhoto(models.Model):
@@ -12,21 +11,5 @@ class EventPhoto(models.Model):
     order = models.PositiveIntegerField(default=1)
 
 
-@receiver(models.signals.pre_save, sender=EventPhoto)
-def pre_save_image(sender, instance, **kwargs):
-    try:
-        old_image = sender.objects.get(id=instance.id).image
-    except sender.DoesNotExist:
-        old_image = None
-    new_image = instance.image
-    if not old_image or not new_image:
-        return
-
-    if old_image.path != new_image.path:
-        if os.path.isfile(old_image.path):
-            os.remove(old_image.path)
-
-
-@receiver(models.signals.post_delete, sender=EventPhoto)
-def post_delete_image(sender, instance, **kwargs):
-    instance.image.delete(save=False)
+models.signals.pre_save.connect(remove_old_image('image'), sender=EventPhoto)
+models.signals.post_delete.connect(remove_deleted_image('image'), sender=EventPhoto)
