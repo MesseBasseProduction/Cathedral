@@ -79,7 +79,7 @@ services:
         source: mbp_cathedral_pg_data
         target: /var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-d", "${DB_NAME}"]
+      test: ["CMD-SHELL", "pg_isready -d ${DB_NAME} -U ${DB_USER}"]
       interval: 5s
       timeout: 20s
       retries: 5
