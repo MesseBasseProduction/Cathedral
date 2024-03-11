@@ -1,16 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit, effect, inject, input } from '@angular/core'
-import { ActivateService } from '../../common/services/activate.service'
+import { Component, OnInit, effect, inject, input } from '@angular/core'
 import { Router } from '@angular/router'
-import { NotificationService } from '../../common/services/notification.service'
+import { ActivateService } from '../../common/services/activate.service'
 
 @Component({
     selector: 'app-activate',
     standalone: true,
     imports: [],
-    providers: [ActivateService, Router, NotificationService],
+    providers: [ActivateService],
     templateUrl: './activate.component.html',
     styleUrl: './activate.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivateComponent implements OnInit {
     // Inputs
@@ -19,7 +17,6 @@ export class ActivateComponent implements OnInit {
 
     // Services
     private readonly router = inject(Router)
-    private readonly notificationService = inject(NotificationService)
     public readonly activateService = inject(ActivateService)
 
     activationEffect = effect(() => {
@@ -27,18 +24,8 @@ export class ActivateComponent implements OnInit {
             case 'inprogress':
                 break
             case 'success':
-                this.router.navigate(['/auth/login'])
-                this.notificationService.add({
-                    message: 'Account activated successfully',
-                    level: 'info',
-                })
-                break
             case 'error':
-                this.router.navigate(['/auth/login'])
-                this.notificationService.add({
-                    message: this.activateService.error()?.message ?? 'Unexpected error',
-                    level: 'error',
-                })
+                this.router.navigate(['/login'])
                 break
         }
     })

@@ -3,7 +3,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { Subject } from 'rxjs'
 import { Notification } from '../model/notification.model'
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class NotificationService {
     // State
     private notifications = signal<Notification[]>([])

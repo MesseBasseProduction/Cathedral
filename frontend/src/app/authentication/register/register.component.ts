@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { RouterLink } from '@angular/router'
 import { RegisterService } from '../../common/services/register.service'
@@ -15,28 +15,31 @@ type RegisterFormType = {
     selector: 'app-signup',
     standalone: true,
     imports: [ReactiveFormsModule, RouterLink],
-    providers: [RegisterService],
+    providers: [RegisterService, AuthValidators],
     templateUrl: './register.component.html',
     styleUrl: './register.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
     public readonly registerService = inject(RegisterService)
     private readonly fb = inject(FormBuilder)
+    private readonly authValidators = inject(AuthValidators)
 
     public registerForm = this.fb.nonNullable.group<RegisterFormType>(
         {
             email: this.fb.nonNullable.control(
                 '',
                 [Validators.required, Validators.email],
-                [AuthValidators.emailUnique]
+                [this.authValidators.emailUnique.bind(this.authValidators)]
             ),
             username: this.fb.nonNullable.control(
                 '',
                 [Validators.required],
-                [AuthValidators.usernameUnique]
+                [this.authValidators.usernameUnique.bind(this.authValidators)]
             ),
-            password: this.fb.nonNullable.control('', [Validators.required, Validators.pattern(PASSWORD_PATTERN)]),
+            password: this.fb.nonNullable.control('', [
+                Validators.required,
+                Validators.pattern(PASSWORD_PATTERN),
+            ]),
             confirm: this.fb.nonNullable.control('', [Validators.required]),
         },
         {

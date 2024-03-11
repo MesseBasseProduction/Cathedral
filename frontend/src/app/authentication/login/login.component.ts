@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core'
+import { Component, effect, inject } from '@angular/core'
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
-import { AuthService } from '../../common/services/auth.service'
 import { Router } from '@angular/router'
-import { NotificationService } from '../../common/services/notification.service'
+import { AuthService } from '../../common/services/auth.service'
 
 type LoginFormType = {
     email: FormControl<string>
@@ -13,15 +12,12 @@ type LoginFormType = {
     selector: 'app-login',
     standalone: true,
     imports: [ReactiveFormsModule],
-    providers: [AuthService, NotificationService, Router],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
     private readonly fb = inject(FormBuilder)
     private readonly router = inject(Router)
-    private readonly notificationService = inject(NotificationService)
 
     public readonly authService = inject(AuthService)
 
@@ -31,17 +27,8 @@ export class LoginComponent {
     })
 
     loginEffect = effect(() => {
-        switch (this.authService.status()) {
-            case 'inprogress':
-                break
-            case 'success':
-                this.router.navigate(['/auth/user/me'])
-                break
-            case 'error':
-                this.notificationService.add({
-                    message: 'Unable to login',
-                    level: 'error',
-                })
+        if (this.authService.status() === 'authenticated') {
+            this.router.navigate(['/home'])
         }
     })
 

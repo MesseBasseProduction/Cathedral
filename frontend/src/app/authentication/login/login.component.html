@@ -1,4 +1,4 @@
-@if (authService.status() === 'inprogress') {
+@if (authService.status() === 'authenticating') {
     <div>spinner</div>
 } @else {
     <form [formGroup]="loginForm">
@@ -11,5 +11,8 @@
             <input id="password" type="password" formControlName="password" />
         </div>
         <button type="submit" (click)="onSubmit()">Login</button>
+        @if (authService.error()) {
+            <span>{{ authService.error()?.message }}</span>
+        }
     </form>
 }

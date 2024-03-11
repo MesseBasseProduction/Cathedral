@@ -6,8 +6,8 @@ export type UserDetail = {
     lastName: string
     active: boolean
     staff: boolean
-    lastLogin: Date | null
-    dateJoined: Date
+    lastLogin: string | null
+    dateJoined: string
 }
 
 export type UserRegistration = {
@@ -25,4 +25,9 @@ export type UserActivation = {
 export type UserCredentials = {
     email: string
     password: string
+}
+
+export type LoginResult = {
+    token: string
+    expiry: string
 }

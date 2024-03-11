@@ -1,26 +1,50 @@
-import { Injectable, computed, signal } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { Injectable, computed, effect, inject, signal } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { EMPTY, Subject, catchError, switchMap } from 'rxjs'
-import { UserCredentials, UserDetail } from '../model/user.model'
-import { ApiService, RequestStatus } from './api.service'
+import { environment } from '../../../environments/environment'
+import {
+    LOCAL_STORAGE_ID_TOKEN_EXP_KEY,
+    LOCAL_STORAGE_ID_TOKEN_KEY,
+} from '../constants/auth.constants'
+import { LoginResult, UserCredentials } from '../model/user.model'
+
+type AuthStatus = 'authenticating' | 'authenticated' | 'error' | undefined
 
 type AuthState = {
-    status: RequestStatus
-    user: UserDetail | null | undefined
+    status: AuthStatus
+    creds: LoginResult | null | undefined
     err: Error | undefined
 }
 
-@Injectable()
-export class AuthService extends ApiService {
+@Injectable({
+    providedIn: 'root',
+})
+export class AuthService {
+    private readonly http = inject(HttpClient)
+
+    private readonly host = environment.apiHost
     private readonly path = this.host + '/auth'
 
     // Source
-    private error$ = new Subject<any>()
+    private error$ = new Subject<Error>()
 
     private loginUser$ = new Subject<UserCredentials>()
     private userLoggedIn$ = this.loginUser$.pipe(
         switchMap(cred =>
-            this.http.post<UserDetail>(this.path + '/login/', cred).pipe(
+            this.http.post<LoginResult>(this.path + '/login/', cred).pipe(
+                catchError(err => {
+                    this.error$.next(err)
+                    return EMPTY
+                })
+            )
+        )
+    )
+
+    private logoutUser$ = new Subject<{}>()
+    private userLoggedOut$ = this.logoutUser$.pipe(
+        switchMap(() =>
+            this.http.post(this.path + '/logout/', null).pipe(
                 catchError(err => {
                     this.error$.next(err)
                     return EMPTY
@@ -31,34 +55,57 @@ export class AuthService extends ApiService {
     // State
     private state = signal<AuthState>({
         status: undefined,
-        user: undefined,
+        creds: undefined,
         err: undefined,
     })
 
     // Selector
     public status = computed(() => this.state().status)
-    public user = computed(() => this.state().user)
+    public error = computed(() => this.state().err)
+    public creds = computed(() => this.state().creds)
 
     constructor() {
-        super()
-
         // Reducers
         this.error$
             .pipe(takeUntilDestroyed())
             .subscribe(err =>
-                this.state.update(state => ({ ...state, user: null, status: 'error', err: err }))
+                this.state.update(state => ({ ...state, creds: null, status: 'error', err: err }))
             )
+
         this.loginUser$
             .pipe(takeUntilDestroyed())
-            .subscribe(() => this.state.update(state => ({ ...state, status: 'inprogress' })))
+            .subscribe(() => this.state.update(state => ({ ...state, status: 'authenticating' })))
         this.userLoggedIn$
             .pipe(takeUntilDestroyed())
-            .subscribe(user =>
-                this.state.update(state => ({ ...state, user: user, status: 'success' }))
+            .subscribe(creds =>
+                this.state.update(state => ({ ...state, creds: creds, status: 'authenticated' }))
             )
+
+        this.logoutUser$
+            .pipe(takeUntilDestroyed())
+            .subscribe(() => this.state.update(state => ({ ...state, status: undefined })))
+        this.userLoggedOut$
+            .pipe(takeUntilDestroyed())
+            .subscribe(() => this.state.update(state => ({ ...state, creds: null })))
+
+        // Effects
+        effect(() => {
+            const creds = this.creds()
+            if (creds) {
+                localStorage.setItem(LOCAL_STORAGE_ID_TOKEN_KEY, creds.token)
+                localStorage.setItem(LOCAL_STORAGE_ID_TOKEN_EXP_KEY, creds.expiry)
+            } else if (creds == null) {
+                localStorage.removeItem(LOCAL_STORAGE_ID_TOKEN_KEY)
+                localStorage.removeItem(LOCAL_STORAGE_ID_TOKEN_EXP_KEY)
+            }
+        })
     }
 
     public login(credentials: UserCredentials) {
         this.loginUser$.next(credentials)
+    }
+
+    public logout() {
+        this.logoutUser$.next({})
     }
 }

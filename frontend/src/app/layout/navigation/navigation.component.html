@@ -1,1 +1,11 @@
-<p>navigation works!</p>
+<nav>
+    <div>
+        @if (userService.user()) {
+            <a routerLink="/login" (click)="onLogout()">Logout</a>
+        } @else {
+            <a routerLink="/login">Login</a>
+            <a routerLink="/register">Register</a>
+            <a routerLink="/profile">Profile</a>
+        }
+    </div>
+</nav>
