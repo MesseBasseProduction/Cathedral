@@ -1,6 +1,7 @@
 import { Component, effect, inject } from '@angular/core'
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 import { AuthService } from '../../common/services/auth.service'
 
 type LoginFormType = {
@@ -11,7 +12,7 @@ type LoginFormType = {
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, ProgressSpinnerModule],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
 })

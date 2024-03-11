@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angu
 import { RouterLink } from '@angular/router'
 import { RegisterService } from '../../common/services/register.service'
 import { AuthValidators, PASSWORD_PATTERN } from '../../common/validators/auth.validator'
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 
 type RegisterFormType = {
     email: FormControl<string>
@@ -14,7 +15,7 @@ type RegisterFormType = {
 @Component({
     selector: 'app-signup',
     standalone: true,
-    imports: [ReactiveFormsModule, RouterLink],
+    imports: [ReactiveFormsModule, RouterLink, ProgressSpinnerModule],
     providers: [RegisterService, AuthValidators],
     templateUrl: './register.component.html',
     styleUrl: './register.component.scss',
