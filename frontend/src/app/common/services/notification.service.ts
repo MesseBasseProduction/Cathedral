@@ -1,10 +1,10 @@
 import { Injectable, signal } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { Subject } from 'rxjs'
-import { Notification } from '../model/notification.model'
+import { Notification } from '../models/notification.model'
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class NotificationService {
     // State

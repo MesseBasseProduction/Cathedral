@@ -1,6 +1,6 @@
-<header class="header-container">
-    <div class="nav-left"><h1>Cathedral</h1></div>
-    <div class="nav-right">
+<header class="flex w-[100%] justify-between px-4 py-2 align-baseline">
+    <div><h1>Cathedral</h1></div>
+    <div class="flex gap-4">
         @if (authService.creds()) {
             <p-menu #menu [popup]="true" [model]="menuItems">
                 <ng-template pTemplate="item" let-item>

@@ -2,7 +2,9 @@ import { Component, effect, inject } from '@angular/core'
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { ButtonModule } from 'primeng/button'
 import { AuthService } from '../../common/services/auth.service'
+import { TextInputComponent } from '../../common/components/text-input/text-input.component'
 
 type LoginFormType = {
     email: FormControl<string>
@@ -12,7 +14,7 @@ type LoginFormType = {
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [ReactiveFormsModule, ProgressSpinnerModule],
+    imports: [ReactiveFormsModule, ProgressSpinnerModule, TextInputComponent, ButtonModule],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
 })

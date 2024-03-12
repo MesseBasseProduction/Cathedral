@@ -1,0 +1,4 @@
+<div class="flex flex-col gap-2" [formGroup]="parentForm">
+    <label [for]="label">{{ label | titlecase }}</label>
+    <input pInputText [id]="label" [type]="type" formControlName="{{ inputName }}" />
+</div>

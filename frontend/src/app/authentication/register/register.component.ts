@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core'
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { RouterLink } from '@angular/router'
+import { ButtonModule } from 'primeng/button'
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { TextInputComponent } from '../../common/components/text-input/text-input.component'
 import { RegisterService } from '../../common/services/register.service'
 import { AuthValidators, PASSWORD_PATTERN } from '../../common/validators/auth.validator'
-import { ProgressSpinnerModule } from 'primeng/progressspinner'
 
 type RegisterFormType = {
     email: FormControl<string>
@@ -15,7 +17,13 @@ type RegisterFormType = {
 @Component({
     selector: 'app-signup',
     standalone: true,
-    imports: [ReactiveFormsModule, RouterLink, ProgressSpinnerModule],
+    imports: [
+        ReactiveFormsModule,
+        RouterLink,
+        ProgressSpinnerModule,
+        ButtonModule,
+        TextInputComponent,
+    ],
     providers: [RegisterService, AuthValidators],
     templateUrl: './register.component.html',
     styleUrl: './register.component.scss',

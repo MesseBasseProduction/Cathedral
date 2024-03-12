@@ -1,7 +1,7 @@
 import { Injectable, computed, signal } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { EMPTY, Subject, catchError, switchMap } from 'rxjs'
-import { UserDetail, UserRegistration } from '../model/user.model'
+import { UserDetail, UserRegistration } from '../models/user.model'
 import { ApiService, RequestStatus } from './api.service'
 
 type RegisterState = {
@@ -14,7 +14,7 @@ export class RegisterService extends ApiService {
     private readonly path = this.host + '/auth/register/'
 
     // Source
-    private error$ = new Subject<any>()
+    private error$ = new Subject<Error>()
 
     private createUser$ = new Subject<UserRegistration>()
     private userCreated$ = this.createUser$.pipe(

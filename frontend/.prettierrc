@@ -8,5 +8,6 @@
     "useTabs": false,
     "trailingComma": "es5",
     "bracketSpacing": true,
-    "bracketSameLine": true
+    "bracketSameLine": true,
+    "plugins": ["prettier-plugin-tailwindcss"]
 }

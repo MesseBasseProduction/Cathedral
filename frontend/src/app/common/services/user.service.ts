@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http'
-import { Injectable, computed, effect, inject, signal } from '@angular/core'
+import { Injectable, computed, inject, signal } from '@angular/core'
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop'
 import { EMPTY, Observable, Subject, catchError, exhaustMap, switchMap } from 'rxjs'
 import { environment } from '../../../environments/environment'
-import { UserDetail } from '../model/user.model'
+import { UserDetail } from '../models/user.model'
 import { AuthService } from './auth.service'
 
 type UserStatus = 'loading' | 'loggedin' | 'loggedout' | 'error' | undefined
@@ -29,7 +29,7 @@ export class UserService {
 
     private authState$ = toObservable(this.authService.creds)
 
-    private loadUserDetail$ = new Subject<{}>()
+    private loadUserDetail$ = new Subject<unknown>()
     private userDetailLoaded$ = this.loadUserDetail$.pipe(
         switchMap(() =>
             this.http.get<UserDetail>(this.path + '/me/').pipe(

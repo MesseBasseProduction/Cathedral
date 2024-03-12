@@ -1,7 +1,7 @@
 import { Injectable, computed, signal } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { EMPTY, Subject, catchError, switchMap } from 'rxjs'
-import { UserActivation } from '../model/user.model'
+import { UserActivation } from '../models/user.model'
 import { ApiService, RequestStatus } from './api.service'
 
 type ActivationState = {
@@ -20,12 +20,12 @@ export class ActivateService extends ApiService {
     })
 
     // Sources
-    private error$ = new Subject<any>()
+    private error$ = new Subject<Error>()
 
     public userActivation$ = new Subject<UserActivation>()
     private userActivated$ = this.userActivation$.pipe(
         switchMap(act =>
-            this.http.post<{}>(this.path, act).pipe(
+            this.http.post<unknown>(this.path, act).pipe(
                 catchError(err => {
                     this.error$.next(err)
                     return EMPTY

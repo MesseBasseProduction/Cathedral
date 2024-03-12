@@ -1,17 +1,30 @@
-<div class="login-container">
+<div class="flex h-[100%] justify-center">
     @if (authService.status() === 'authenticating') {
         <p-progressSpinner></p-progressSpinner>
     } @else {
-        <form [formGroup]="loginForm">
-            <div>
-                <label for="email">Email</label>
-                <input id="email" type="email" formControlName="email" />
+        <form
+            [formGroup]="loginForm"
+            class="flex flex-col gap-8 self-center rounded border-2 border-solid border-black px-5 py-8">
+            <div class="flex flex-col gap-4">
+                <app-text-input
+                    [label]="'email'"
+                    [type]="'email'"
+                    [parentForm]="loginForm"
+                    [inputName]="'email'"></app-text-input>
+                <app-text-input
+                    [label]="'password'"
+                    [type]="'password'"
+                    [parentForm]="loginForm"
+                    [inputName]="'password'"></app-text-input>
             </div>
-            <div>
-                <label for="password">Password</label>
-                <input id="password" type="password" formControlName="password" />
-            </div>
-            <button type="submit" (click)="onSubmit()">Login</button>
+            <p-button
+                label="Login"
+                severity="primary"
+                [raised]="true"
+                type="submit"
+                (click)="onSubmit()"
+                class="self-center"
+                [disabled]="loginForm.untouched || !loginForm.valid"></p-button>
             @if (authService.error()) {
                 <span>{{ authService.error()?.message }}</span>
             }

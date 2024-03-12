@@ -7,7 +7,7 @@ import {
     LOCAL_STORAGE_ID_TOKEN_EXP_KEY,
     LOCAL_STORAGE_ID_TOKEN_KEY,
 } from '../constants/auth.constants'
-import { LoginResult, UserCredentials } from '../model/user.model'
+import { LoginResult, UserCredentials } from '../models/user.model'
 
 type AuthStatus = 'authenticating' | 'authenticated' | 'error' | undefined
 
@@ -41,7 +41,7 @@ export class AuthService {
         )
     )
 
-    private logoutUser$ = new Subject<{}>()
+    private logoutUser$ = new Subject<unknown>()
     private userLoggedOut$ = this.logoutUser$.pipe(
         switchMap(() =>
             this.http.post(this.path + '/logout/', null).pipe(

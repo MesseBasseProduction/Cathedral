@@ -7,12 +7,7 @@ import { NavigationComponent } from './layout/navigation/navigation.component'
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [
-        RouterOutlet,
-        HeaderComponent,
-        FooterComponent,
-        NavigationComponent
-    ],
+    imports: [RouterOutlet, HeaderComponent, FooterComponent, NavigationComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })

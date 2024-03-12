@@ -1,4 +1,8 @@
-<app-header></app-header>
-<app-navigation></app-navigation>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div class="grid h-[100vh] grid-cols-main-layout grid-rows-main-layout">
+    <app-header class="col-span-full row-span-1"></app-header>
+    <app-navigation class="col-span-1 row-span-2"></app-navigation>
+    <div class="col-span-2 row-span-2">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer class="col-span-full row-span-3"></app-footer>
+</div>

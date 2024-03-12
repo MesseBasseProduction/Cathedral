@@ -26,8 +26,8 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": [
                             "src/styles.scss",
-                            "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-                            "node_modules/primeng/resources/primeng.min.css"
+                            "primeng/resources/themes/lara-dark-blue/theme.css",
+                            "primeng/resources/primeng.css"
                         ],
                         "scripts": []
                     },
