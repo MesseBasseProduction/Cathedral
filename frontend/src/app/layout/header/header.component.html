@@ -1,1 +1,16 @@
-<div>header</div>
+<header class="header-container">
+    <div class="nav-left"><h1>Cathedral</h1></div>
+    <div class="nav-right">
+        @if (authService.creds()) {
+            <p-menu #menu [popup]="true" [model]="menuItems">
+                <ng-template pTemplate="item" let-item>
+                    <a [routerLink]="item.link">{{ item.label }}</a>
+                </ng-template>
+            </p-menu>
+            <button type="button" (click)="menu.toggle($event)">Menu</button>
+        } @else {
+            <a routerLink="/login">Login</a>
+            <a routerLink="/register">Register</a>
+        }
+    </div>
+</header>

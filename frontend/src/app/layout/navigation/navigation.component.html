@@ -1,10 +1,5 @@
-<nav>
-    <div>
-        @if (userService.user()) {
-            <a routerLink="/login" (click)="onLogout()">Logout</a>
-        } @else {
-            <a routerLink="/login">Login</a>
-            <a routerLink="/register">Register</a>
-        }
-    </div>
-</nav>
+@if(userService.user()) {
+    <nav>
+        <div>navigation</div>
+    </nav>
+}
