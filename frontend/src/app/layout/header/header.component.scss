@@ -1,0 +1,15 @@
+header.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    padding: 0 15px;
+
+    border: 1px solid black;
+
+    &> div.nav-right {
+        display: flex;
+
+        gap: 1rem;
+    }
+}
