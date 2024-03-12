@@ -3,8 +3,8 @@ import io
 import uuid
 
 from PIL import Image
+from rest_framework import serializers
 
-from app import serializers
 from messe_basse_production.services.image import resize_image, compress_image
 
 

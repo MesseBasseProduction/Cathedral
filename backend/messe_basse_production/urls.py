@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework_nested import routers
 
 from messe_basse_production.views import MemberViewSet, DocumentViewSet, OrganizationViewSet, VideoViewSet, \
-    EventViewSet, EventPhotoViewSet, ExpositionViewSet, ExpositionPhotoViewSet, AlbumViewSet, ApparelViewSet
+    EventViewSet, EventPhotoViewSet, ExpositionViewSet, ExpositionPhotoViewSet, AlbumViewSet, ApparelViewSet, \
+    SoftwareViewSet, SoftwareArtistViewSet
 
 router = routers.DefaultRouter()
 router.register(r'album', AlbumViewSet, basename='album')
@@ -16,6 +17,8 @@ exposition_router = routers.NestedDefaultRouter(router, r'exposition', lookup='e
 exposition_router.register(r'photo', ExpositionPhotoViewSet, basename='exposition-photo')
 
 router.register(r'member', MemberViewSet, basename='member')
+router.register(r'software', SoftwareViewSet, basename='software')
+router.register(r'software-artist', SoftwareArtistViewSet, basename='software-artist')
 router.register(r'video', VideoViewSet, basename='video')
 
 urlpatterns = [
