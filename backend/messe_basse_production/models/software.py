@@ -16,7 +16,7 @@ models.signals.post_delete.connect(remove_deleted_image('image'), sender=Softwar
 
 
 class SoftwareDescription(models.Model):
-    event = models.ForeignKey(Software, on_delete=models.CASCADE, related_name='descriptions')
+    software = models.ForeignKey(Software, on_delete=models.CASCADE, related_name='descriptions')
     lang = models.CharField(max_length=2, choices=LangEnum)
     description = models.TextField()
 
