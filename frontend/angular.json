@@ -26,8 +26,16 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": [
                             "src/styles.scss",
-                            "primeng/resources/themes/lara-dark-blue/theme.css",
-                            "primeng/resources/primeng.css"
+                            {
+                                "input": "src/themes/lara-blue-dark.scss",
+                                "bundleName": "lara-blue-dark",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/themes/lara-blue-light.scss",
+                                "bundleName": "lara-blue-light",
+                                "inject": false
+                            }
                         ],
                         "scripts": []
                     },
