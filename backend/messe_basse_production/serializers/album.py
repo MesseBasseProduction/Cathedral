@@ -24,4 +24,4 @@ class AlbumSerializer(serializers.ModelSerializer):
         return super().to_representation(instance)
 
     def validate_image(self, image):
-        return validate_image(image, (500, 349))
+        return validate_image(image, (500, 349), 500 / 349)

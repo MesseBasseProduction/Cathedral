@@ -74,4 +74,4 @@ class ArtistSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
     def validate_image(self, image):
-        return validate_image(image, (910, 512))
+        return validate_image(image, (910, 512), 910 / 512)

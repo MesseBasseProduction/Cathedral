@@ -75,4 +75,4 @@ class EventSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
     def validate_image(self, image):
-        return validate_image(image, (1024, 525))
+        return validate_image(image, (1024, 525), 1024 / 525)

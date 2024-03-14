@@ -51,7 +51,7 @@ class SoftwareSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
     def validate_image(self, image):
-        return validate_image(image, expected_size=(1920, 1080))
+        return validate_image(image, expected_size=(1920, 1080), expected_ratio=1920 / 1080)
 
 
 class SoftwareArtistSerializer(serializers.ModelSerializer):
@@ -72,4 +72,4 @@ class SoftwareArtistSerializer(serializers.ModelSerializer):
         return super().to_representation(instance)
 
     def validate_image(self, image):
-        return validate_image(image, expected_size=(1920, 1080))
+        return validate_image(image, expected_size=(1920, 1080), expected_ratio=1920 / 1080)
