@@ -41,6 +41,10 @@ class ArtistSerializer(serializers.ModelSerializer):
             'links',
         )
 
+    def to_representation(self, instance):
+        self.fields['image'] = serializers.ImageField()
+        return super().to_representation(instance)
+
     def create(self, validated_data):
         descriptions = validated_data.pop('descriptions')
         links = validated_data.pop('links')

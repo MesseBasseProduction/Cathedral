@@ -5,7 +5,7 @@ from .document import DocumentSerializer, DocumentPostOrPatchSerializer
 from .event import EventSerializer
 from .event_photo import EventPhotoSerializer
 from .exposition import ExpositionSerializer, ExpositionPhotoSerializer
-from .member import MemberSerializer, MemberPostOrPatchSerializer
+from .member import MemberSerializer
 from .organization import OrganizationSerializer
 from .release import ReleaseSerializer, ArtistReleaseSerializer
 from .software import SoftwareSerializer, SoftwareArtistSerializer

@@ -38,6 +38,10 @@ class BaseReleaseSerializer(serializers.ModelSerializer):
 
         return super().update(instance, validated_data)
 
+    def to_representation(self, instance):
+        self.fields['image'] = serializers.ImageField()
+        return super().to_representation(instance)
+
     def validate_image(self, image):
         return validate_image(image, (512, 512), 1)
 

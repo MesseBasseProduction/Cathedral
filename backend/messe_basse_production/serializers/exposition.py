@@ -30,6 +30,10 @@ class ExpositionPhotoSerializer(serializers.ModelSerializer):
             'image'
         )
 
+    def to_representation(self, instance):
+        self.fields['image'] = serializers.ImageField()
+        return super().to_representation(instance)
+
     def create(self, validated_data):
         validated_data['exposition'] = self.context['exposition']
         return super().create(validated_data)

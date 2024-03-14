@@ -18,5 +18,9 @@ class EventPhotoSerializer(serializers.ModelSerializer):
             'url',
         )
 
+    def to_representation(self, instance):
+        self.fields['image'] = serializers.ImageField()
+        return super().to_representation(instance)
+
     def validate_image(self, image):
         return validate_image(image)

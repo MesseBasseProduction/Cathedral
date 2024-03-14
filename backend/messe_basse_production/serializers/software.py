@@ -28,6 +28,10 @@ class SoftwareSerializer(serializers.ModelSerializer):
             'descriptions',
         )
 
+    def to_representation(self, instance):
+        self.fields['image'] = serializers.ImageField()
+        return super().to_representation(instance)
+
     def create(self, validated_data):
         descriptions = validated_data.pop('descriptions')
 
@@ -62,6 +66,10 @@ class SoftwareArtistSerializer(serializers.ModelSerializer):
             'image',
             'url',
         )
+
+    def to_representation(self, instance):
+        self.fields['image'] = serializers.ImageField()
+        return super().to_representation(instance)
 
     def validate_image(self, image):
         return validate_image(image, expected_size=(1920, 1080))

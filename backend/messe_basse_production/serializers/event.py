@@ -42,6 +42,10 @@ class EventSerializer(serializers.ModelSerializer):
             'participants'
         )
 
+    def to_representation(self, instance):
+        self.fields['image'] = serializers.ImageField()
+        return super().to_representation(instance)
+
     def create(self, validated_data):
         descriptions = validated_data.pop('descriptions')
         participants = validated_data.pop('participants')
