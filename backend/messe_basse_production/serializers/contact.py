@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
-from messe_basse_production.serializers import OrganizationSerializer, DocumentSerializer
+from messe_basse_production.serializers.document import DocumentSerializer
 from messe_basse_production.serializers.member import ContactMemberSerializer
+from messe_basse_production.serializers.organization import OrganizationSerializer
 
 
 class ContactSerializer(serializers.Serializer):

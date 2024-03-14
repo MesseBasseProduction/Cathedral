@@ -21,7 +21,12 @@ class AlbumSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         self.fields['image'] = serializers.ImageField()
-        return super().to_representation(instance)
+        representation = super().to_representation(instance)
+        representation['price'] = {
+            'regular': representation.pop('regular_price'),
+            'signed': representation.pop('signed_price'),
+        }
+        return representation
 
     def validate_image(self, image):
         return validate_image(image, (500, 349), 500 / 349)
