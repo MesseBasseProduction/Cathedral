@@ -7683,6 +7683,11 @@ pretty-quick@^4.0.0:
     picomatch "^3.0.1"
     tslib "^2.6.2"
 
+primeicons@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-6.0.1.tgz#431fa7c79825934eefd62087d8e1faa6a9e376ad"
+  integrity sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==
+
 primeng@^17.4.0:
   version "17.4.0"
   resolved "https://registry.yarnpkg.com/primeng/-/primeng-17.4.0.tgz#cfcb9c2819ae79be2618d58e8e8b02d861248d29"
