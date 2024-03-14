@@ -1,6 +1,7 @@
 from django.db import models
+from django.dispatch import receiver
 
-from messe_basse_production.signals import remove_old_image, remove_deleted_image
+from messe_basse_production.signals import remove_old_image, remove_deleted_image, update_order
 
 
 class Exposition(models.Model):
@@ -20,6 +21,14 @@ class ExpositionPhoto(models.Model):
     image = models.ImageField(upload_to=get_exposition_photo_path)
     order = models.PositiveIntegerField(default=1)
 
+    class Meta:
+        ordering = ('order',)
+
 
 models.signals.pre_save.connect(remove_old_image('image'), sender=ExpositionPhoto)
-models.signals.post_delete.connect(remove_deleted_image('image'), sender=ExpositionPhoto)
+
+
+@receiver(models.signals.post_delete, sender=ExpositionPhoto)
+def on_delete(sender, instance, **kwargs):
+    remove_deleted_image('image')(sender, instance, **kwargs)
+    update_order.send(sender=sender, order_min=instance.order, new_order=instance.order)
