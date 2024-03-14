@@ -25,3 +25,13 @@ class MemberSerializer(serializers.ModelSerializer):
 
     def validate_image(self, image):
         return validate_image(image, (512, 512), 1)
+
+
+class ContactMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Member
+        fields = (
+            'name',
+            'role',
+            'image',
+        )
