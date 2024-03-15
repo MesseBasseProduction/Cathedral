@@ -6,7 +6,7 @@ from messe_basse_production.signals import remove_old_image, remove_deleted_imag
 
 
 class Release(models.Model):
-    artist = models.ManyToManyField(Artist, related_name='releases')
+    artists = models.ManyToManyField(Artist, related_name='releases')
     name = models.CharField(max_length=150)
     catalog = models.CharField(max_length=150)
     date = models.DateField()

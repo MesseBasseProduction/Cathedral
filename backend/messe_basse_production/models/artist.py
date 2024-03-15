@@ -11,6 +11,9 @@ class Artist(models.Model):
     genres = ArrayField(models.CharField(max_length=50))
     main_link = models.URLField()
 
+    def __str__(self):
+        return self.name
+
 
 models.signals.pre_save.connect(remove_old_image('image'), sender=Artist)
 models.signals.post_delete.connect(remove_deleted_image('image'), sender=Artist)

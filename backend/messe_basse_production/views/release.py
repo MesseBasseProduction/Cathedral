@@ -17,7 +17,7 @@ class ArtistReleaseViewSet(viewsets.ModelViewSet):
     pagination_class = ExtendedPageNumberPagination
 
     def get_queryset(self):
-        return Release.objects.filter(artist=self.kwargs['artist_pk'])
+        return Release.objects.filter(artists__id=self.kwargs['artist_pk'])
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
