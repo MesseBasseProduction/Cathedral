@@ -28,6 +28,7 @@ class ArtistSerializer(serializers.ModelSerializer):
     mainLink = serializers.URLField(source='main_link')
     descriptions = ArtistDescriptionSerializer(many=True)
     links = ArtistLinkSerializer(many=True)
+    releases = serializers.ListSerializer(child=serializers.CharField(), read_only=True)
 
     class Meta:
         model = Artist
@@ -39,6 +40,7 @@ class ArtistSerializer(serializers.ModelSerializer):
             'mainLink',
             'descriptions',
             'links',
+            'releases',
         )
 
     def to_representation(self, instance):

@@ -18,6 +18,9 @@ class Release(models.Model):
     class Meta:
         ordering = ('-date',)
 
+    def __str__(self):
+        return self.catalog
+
 
 models.signals.pre_save.connect(remove_old_image('image'), sender=Release)
 models.signals.post_delete.connect(remove_deleted_image('image'), sender=Release)

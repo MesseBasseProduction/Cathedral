@@ -2,6 +2,7 @@ from .album import AlbumViewSet
 from .apparel import ApparelViewSet
 from .artist import ArtistViewSet
 from .contact import ContactView
+from .creation import CreationView
 from .document import DocumentViewSet
 from .event import EventViewSet
 from .event_photo import EventPhotoViewSet

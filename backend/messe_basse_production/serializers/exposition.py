@@ -70,3 +70,17 @@ class ExpositionPhotoSerializer(serializers.ModelSerializer):
 
     def validate_image(self, image):
         return validate_image(image)
+
+
+class ExpositionExtendedSerializer(serializers.ModelSerializer):
+    photos = ExpositionPhotoSerializer(many=True)
+
+    class Meta:
+        model = Exposition
+        fields = (
+            'id',
+            'title',
+            'photographer',
+            'url',
+            'photos',
+        )
