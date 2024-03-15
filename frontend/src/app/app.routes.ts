@@ -23,9 +23,23 @@ export const routes: Routes = [
             import('./authentication/activate/activate.component').then(c => c.ActivateComponent),
     },
     {
-        path: 'profile',
-        loadComponent: () =>
-            import('./user/profile/profile.component').then(c => c.ProfileComponent),
+        path: 'user',
+        loadChildren: () => import('./user/user.routes').then(r => r.routes),
+        canActivate: [authGuard],
+    },
+    {
+        path: 'music',
+        loadChildren: () => import('./music/music.routes').then(r => r.routes),
+        canActivate: [authGuard],
+    },
+    {
+        path: 'apparel',
+        loadChildren: () => import('./apparel/apparel.routes').then(r => r.routes),
+        canActivate: [authGuard],
+    },
+    {
+        path: 'software',
+        loadChildren: () => import('./software/software.routes').then(r => r.routes),
         canActivate: [authGuard],
     },
     {

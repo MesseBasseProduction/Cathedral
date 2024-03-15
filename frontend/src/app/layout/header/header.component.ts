@@ -21,8 +21,12 @@ export class HeaderComponent {
             command: this.onLogout.bind(this),
         },
         {
-            routerLink: '/profile',
+            routerLink: '/user/profile',
             label: 'Profile',
+        },
+        {
+            routerLink: '/user/settings',
+            label: 'Settings',
         },
     ]
 

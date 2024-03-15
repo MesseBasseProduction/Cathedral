@@ -7,7 +7,7 @@ module.exports = {
         "main-layout": "auto 1fr auto",
       },
       gridTemplateRows: {
-        "main-layout": "auto 1fr auto",
+        "main-layout": "auto auto 1fr auto",
       }
     },
   },
