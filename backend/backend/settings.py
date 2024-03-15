@@ -139,6 +139,11 @@ else:
     MAILJET_API_KEY = os.environ.get('MAILJET_API_KEY')
     MAILJET_API_SECRET = os.environ.get('MAILJET_API_SECRET')
 
+# File Upload
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # = 5MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # = 5MB
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 

@@ -8,6 +8,9 @@ class Document(models.Model):
     file = models.FileField(upload_to='document/')
     date = models.DateField()
 
+    class Meta:
+        ordering = ('-date',)
+
 
 models.signals.pre_save.connect(remove_old_image('file'), sender=Document)
 models.signals.post_delete.connect(remove_deleted_image('file'), sender=Document)

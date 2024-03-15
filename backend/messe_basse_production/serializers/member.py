@@ -1,11 +1,13 @@
 from rest_framework import serializers
 
-from app.serializers.common import ReadOnlyModelSerializer
 from messe_basse_production.models import Member
 from messe_basse_production.validators import validate_image
 
 
-class MemberSerializer(ReadOnlyModelSerializer):
+class MemberSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    image = serializers.CharField()
+
     class Meta:
         model = Member
         fields = (
@@ -17,22 +19,19 @@ class MemberSerializer(ReadOnlyModelSerializer):
             'image',
         )
 
+    def to_representation(self, instance):
+        self.fields['image'] = serializers.ImageField()
+        return super().to_representation(instance)
 
-class MemberPostOrPatchSerializer(serializers.ModelSerializer):
-    image = serializers.CharField()
+    def validate_image(self, image):
+        return validate_image(image, (512, 512), 1)
 
+
+class ContactMemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Member
         fields = (
             'name',
             'role',
-            'leader',
-            'active',
             'image',
         )
-
-    def to_representation(self, instance):
-        return MemberSerializer(instance).data
-
-    def validate_image(self, image):
-        return validate_image(image, (512, 512), 1)
