@@ -1,4 +1,3 @@
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 from messe_basse_production.models.artist import Artist
@@ -7,8 +6,7 @@ from messe_basse_production.signals import remove_old_image, remove_deleted_imag
 
 
 class Release(models.Model):
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='releases')
-    artist_names = ArrayField(models.CharField(max_length=100))
+    artist = models.ManyToManyField(Artist, related_name='releases')
     name = models.CharField(max_length=150)
     catalog = models.CharField(max_length=150)
     date = models.DateField()

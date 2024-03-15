@@ -17,7 +17,6 @@ class ReleaseLinkSerializer(serializers.ModelSerializer):
 class BaseReleaseSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     image = serializers.CharField()
-    artistNames = serializers.ListSerializer(child=serializers.CharField(max_length=100), source='artist_names')
     mainLink = serializers.URLField(source='main_link')
     links = ReleaseLinkSerializer(many=True)
 
@@ -56,7 +55,6 @@ class ArtistReleaseSerializer(BaseReleaseSerializer):
             'image',
             'date',
             'mainLink',
-            'artistNames',
             'links',
         )
 
@@ -66,10 +64,11 @@ class ArtistReleaseSerializer(BaseReleaseSerializer):
 
 
 class ReleaseSerializer(BaseReleaseSerializer):
-    artist = ArtistSerializer(read_only=True)
-    artistId = serializers.PrimaryKeyRelatedField(
+    artist = ArtistSerializer(read_only=True, many=True)
+    artistIds = serializers.PrimaryKeyRelatedField(
         source='artist',
         queryset=Artist.objects.all(),
+        many=True,
         write_only=True
     )
 
@@ -82,8 +81,7 @@ class ReleaseSerializer(BaseReleaseSerializer):
             'image',
             'date',
             'mainLink',
-            'artistNames',
             'links',
             'artist',
-            'artistId',
+            'artistIds',
         )
