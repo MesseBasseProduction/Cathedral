@@ -3,7 +3,8 @@ from rest_framework_nested import routers
 
 from messe_basse_production.views import MemberViewSet, DocumentViewSet, OrganizationViewSet, VideoViewSet, \
     EventViewSet, EventPhotoViewSet, ExpositionViewSet, ExpositionPhotoViewSet, AlbumViewSet, ApparelViewSet, \
-    SoftwareViewSet, SoftwareArtistViewSet, ArtistViewSet, ArtistReleaseViewSet, ReleaseViewSet, ContactView, MerchView
+    SoftwareViewSet, SoftwareArtistViewSet, ArtistViewSet, ArtistReleaseViewSet, ReleaseViewSet, ContactView, MerchView, \
+    CreationView
 
 router = routers.DefaultRouter()
 router.register(r'album', AlbumViewSet, basename='album')
@@ -32,4 +33,5 @@ urlpatterns = [
     path(r'organization/', OrganizationViewSet.as_view(), name='organization'),
     path(r'contact/', ContactView.as_view(), name='contact'),
     path(r'merch/', MerchView.as_view(), name='merch'),
+    path(r'creation/', CreationView.as_view(), name='creation'),
 ]

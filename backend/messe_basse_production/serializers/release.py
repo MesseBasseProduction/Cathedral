@@ -17,7 +17,6 @@ class ReleaseLinkSerializer(serializers.ModelSerializer):
 class BaseReleaseSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     image = serializers.CharField()
-    artistNames = serializers.ListSerializer(child=serializers.CharField(max_length=100), source='artist_names')
     mainLink = serializers.URLField(source='main_link')
     links = ReleaseLinkSerializer(many=True)
 
@@ -56,20 +55,22 @@ class ArtistReleaseSerializer(BaseReleaseSerializer):
             'image',
             'date',
             'mainLink',
-            'artistNames',
             'links',
         )
 
     def create(self, validated_data):
-        validated_data['artist'] = self.context.get('artist')
-        return super().create(validated_data)
+        release = super().create(validated_data)
+        # print(release.artists.all())
+        release.artists.add(self.context.get('artist'))
+        return release
 
 
 class ReleaseSerializer(BaseReleaseSerializer):
-    artist = ArtistSerializer(read_only=True)
-    artistId = serializers.PrimaryKeyRelatedField(
+    artists = ArtistSerializer(read_only=True, many=True)
+    artistIds = serializers.PrimaryKeyRelatedField(
         source='artist',
         queryset=Artist.objects.all(),
+        many=True,
         write_only=True
     )
 
@@ -82,8 +83,25 @@ class ReleaseSerializer(BaseReleaseSerializer):
             'image',
             'date',
             'mainLink',
-            'artistNames',
             'links',
-            'artist',
-            'artistId',
+            'artists',
+            'artistIds',
+        )
+
+
+class CreationReleaseSerializer(serializers.ModelSerializer):
+    artists = serializers.ListSerializer(child=serializers.CharField(), read_only=True)
+    mainLink = serializers.URLField(source='main_link')
+    links = ReleaseLinkSerializer(many=True)
+
+    class Meta:
+        model = Release
+        fields = (
+            'catalog',
+            'name',
+            'artists',
+            'date',
+            'image',
+            'mainLink',
+            'links',
         )
