@@ -1,0 +1,11 @@
+<form [formGroup]="descriptionForm">
+    <app-text-input
+        inputName="lang"
+        type="text"
+        [parentForm]="descriptionForm"
+        label="Language"></app-text-input>
+    <div>
+        <label for="desc">Description</label>
+        <textarea id="desc" formControlName="description" pInputTextarea></textarea>
+    </div>
+</form>

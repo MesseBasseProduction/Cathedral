@@ -14,5 +14,5 @@ export class TextInputComponent {
     @Input({ required: true }) label!: string
     @Input({ required: true }) inputName!: string
     @Input({ required: true }) parentForm!: FormGroup
-    @Input({ required: true }) type!: 'text' | 'password' | 'email'
+    @Input({ required: true }) type!: 'text' | 'password' | 'email' | 'url'
 }

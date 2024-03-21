@@ -1,1 +1,26 @@
-<p>create works!</p>
+<form [formGroup]="createForm">
+    <app-text-input
+        inputName="name"
+        [parentForm]="createForm"
+        label="Name"
+        type="text"></app-text-input>
+    <app-text-input
+        inputName="mainLink"
+        [parentForm]="createForm"
+        label="Main Link"
+        type="text"></app-text-input>
+    <div>
+        <label for="genres">Genres</label>
+        <p-chips id="genres" formControlName="genres"></p-chips>
+    </div>
+    <div formArrayName="descriptions">
+        @for (desc of createForm.controls.descriptions.controls; track desc; let i = $index) {
+            <app-description-input [formControlName]="i"></app-description-input>
+        }
+    </div>
+    <div formArrayName="links">
+        @for (link of createForm.controls.links.controls; track link; let i = $index) {
+            <app-link-input [formControlName]="i"></app-link-input>
+        }
+    </div>
+</form>

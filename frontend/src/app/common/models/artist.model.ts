@@ -1,4 +1,5 @@
 import { Link } from './link.model'
+import { Description } from './description.model'
 
 export type Artist = {
     id: number
@@ -7,14 +8,9 @@ export type Artist = {
     genres: string[]
     mainLink: string
     links: Link[]
-    descriptions: ArtistDescription[]
+    descriptions: Description[]
 }
 
 export type ArtistCreate = Omit<Artist, 'id'>
 
 export type ArtistUpdate = Partial<ArtistCreate>
-
-export type ArtistDescription = {
-    lang: string
-    description: string
-}

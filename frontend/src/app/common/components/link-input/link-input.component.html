@@ -1,0 +1,8 @@
+<form [formGroup]="linkForm">
+    <app-text-input
+        inputName="type"
+        type="text"
+        [parentForm]="linkForm"
+        label="Type"></app-text-input>
+    <app-text-input inputName="url" type="url" [parentForm]="linkForm" label="URL"></app-text-input>
+</form>
