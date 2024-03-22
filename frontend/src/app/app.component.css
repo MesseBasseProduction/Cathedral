@@ -3,16 +3,11 @@ div.container {
     height: 100vh;
     grid-template:
         'head head head'
-        'nav nav nav'
         'main main main' 1fr
         'foot foot foot' auto / auto 1fr auto;
 
     app-header {
         grid-area: head;
-    }
-
-    app-navigation {
-        grid-area: nav;
     }
 
     main {

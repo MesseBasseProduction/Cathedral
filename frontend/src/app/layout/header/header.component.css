@@ -1,12 +1,27 @@
 header {
-    display: flex;
+    background: var(--surface-card);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
-    justify-content: space-between;
     padding: 0.5rem 1rem;
-    align-items: baseline;
+    align-items: normal;
+
+    h1 {
+        grid-column: 1;
+        justify-self: left;
+    }
+
+    app-navigation {
+        grid-column: 2;
+        justify-self: center;
+    }
 
     div {
+        grid-column: 3;
+        justify-self: right;
+
         display: flex;
         gap: 0.5rem;
+        margin: auto 0;
     }
 }

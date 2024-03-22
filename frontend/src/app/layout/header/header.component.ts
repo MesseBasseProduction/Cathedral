@@ -2,13 +2,21 @@ import { Component, inject } from '@angular/core'
 import { RouterLink } from '@angular/router'
 import { MenuItem } from 'primeng/api'
 import { MenuModule } from 'primeng/menu'
-import { AuthService } from '../../common/services/auth.service'
 import { ThemeVariantToggleComponent } from '../../common/components/theme-variant-toggle/theme-variant-toggle.component'
+import { AuthService } from '../../common/services/auth.service'
+import { NavigationComponent } from '../navigation/navigation.component'
+import { ButtonModule } from 'primeng/button'
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [RouterLink, MenuModule, ThemeVariantToggleComponent],
+    imports: [
+        RouterLink,
+        MenuModule,
+        ThemeVariantToggleComponent,
+        NavigationComponent,
+        ButtonModule,
+    ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.css',
 })

@@ -1,5 +1,6 @@
 <header>
     <h1>Cathedral</h1>
+    <app-navigation></app-navigation>
     <div>
         @if (authService.creds()) {
             <p-menu #menu [popup]="true" [model]="menuItems">
@@ -7,7 +8,7 @@
                     <a [routerLink]="item.link">{{ item.label }}</a>
                 </ng-template>
             </p-menu>
-            <button type="button" (click)="menu.toggle($event)">Menu</button>
+            <p-button type="button" (click)="menu.toggle($event)" icon="pi pi-bars"></p-button>
         } @else {
             <a routerLink="/login">Login</a>
             <a routerLink="/register">Register</a>
