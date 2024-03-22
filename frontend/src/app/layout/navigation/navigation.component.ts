@@ -9,7 +9,7 @@ import { UserService } from '../../common/services/user.service'
     standalone: true,
     imports: [RouterLink, TabMenuModule],
     templateUrl: './navigation.component.html',
-    styleUrl: './navigation.component.scss',
+    styleUrl: './navigation.component.css',
 })
 export class NavigationComponent {
     public readonly userService = inject(UserService)

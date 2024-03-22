@@ -8,7 +8,7 @@ import { ActivateService } from '../../common/services/activate.service'
     imports: [],
     providers: [ActivateService],
     templateUrl: './activate.component.html',
-    styleUrl: './activate.component.scss',
+    styleUrl: './activate.component.css',
 })
 export class ActivateComponent implements OnInit {
     // Inputs

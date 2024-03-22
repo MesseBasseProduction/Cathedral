@@ -68,9 +68,7 @@ export class AuthService {
         // Reducers
         this.error$
             .pipe(takeUntilDestroyed())
-            .subscribe(err =>
-                this.state.update(state => ({ ...state, creds: null, status: 'error', err: err }))
-            )
+            .subscribe(err => this.state.update(state => ({ ...state, status: 'error', err: err })))
 
         this.loginUser$
             .pipe(takeUntilDestroyed())

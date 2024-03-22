@@ -6,7 +6,7 @@ import { Artist } from '../../../common/models/artist.model'
     standalone: true,
     imports: [],
     templateUrl: './artist-list.component.html',
-    styleUrl: './artist-list.component.scss',
+    styleUrl: './artist-list.component.css',
 })
 export class ArtistListComponent {
     public artists = input.required<Artist[]>()

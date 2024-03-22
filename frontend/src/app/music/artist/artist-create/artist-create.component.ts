@@ -7,6 +7,8 @@ import { TextInputComponent } from '../../../common/components/text-input/text-i
 import { Description } from '../../../common/models/description.model'
 import { Link } from '../../../common/models/link.model'
 import { LinkInputComponent } from '../../../common/components/link-input/link-input.component'
+import { ButtonModule } from 'primeng/button'
+import { ImageUploadComponent } from '../../../common/components/image-upload/image-upload.component'
 
 type CreateForm = {
     name: FormControl<string>
@@ -27,9 +29,11 @@ type CreateForm = {
         InputTextModule,
         DescriptionInputComponent,
         LinkInputComponent,
+        ButtonModule,
+        ImageUploadComponent,
     ],
     templateUrl: './artist-create.component.html',
-    styleUrl: './artist-create.component.scss',
+    styleUrl: './artist-create.component.css',
 })
 export class ArtistCreateComponent {
     private readonly fb = inject(FormBuilder)
@@ -57,7 +61,29 @@ export class ArtistCreateComponent {
         return this.createForm.controls
     }
 
-    constructor() {
-        this.createForm.valueChanges.subscribe(val => console.log(val))
+    addDescription() {
+        this.controls.descriptions.push(
+            this.fb.nonNullable.control<Description>({
+                lang: '',
+                description: '',
+            })
+        )
+    }
+
+    removeDescription(idx: number) {
+        this.controls.descriptions.removeAt(idx)
+    }
+
+    addLink() {
+        this.controls.links.push(
+            this.fb.nonNullable.control<Link>({
+                type: '',
+                url: '',
+            })
+        )
+    }
+
+    removeLink(idx: number) {
+        this.controls.links.removeAt(idx)
     }
 }

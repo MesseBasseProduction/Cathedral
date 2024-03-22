@@ -5,6 +5,6 @@ import { Component } from '@angular/core'
     standalone: true,
     imports: [],
     templateUrl: './artist-update.component.html',
-    styleUrl: './artist-update.component.scss',
+    styleUrl: './artist-update.component.css',
 })
 export class ArtistUpdateComponent {}

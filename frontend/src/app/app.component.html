@@ -1,8 +1,8 @@
-<div class="grid h-[100vh] grid-cols-main-layout grid-rows-main-layout">
-    <app-header class="col-span-full row-span-1"></app-header>
-    <app-navigation class="col-span-full row-span-1"></app-navigation>
-    <div class="col-span-full row-span-1">
+<div class="container">
+    <app-header></app-header>
+    <app-navigation></app-navigation>
+    <main>
         <router-outlet></router-outlet>
-    </div>
-    <app-footer class="col-span-full row-span-1"></app-footer>
+    </main>
+    <app-footer></app-footer>
 </div>

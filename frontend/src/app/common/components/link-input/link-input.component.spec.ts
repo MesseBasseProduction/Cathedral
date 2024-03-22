@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { LinkInputComponent } from './link.component'
+import { LinkInputComponent } from './link-input.component'
 
 describe('LinkComponent', () => {
     let component: LinkInputComponent

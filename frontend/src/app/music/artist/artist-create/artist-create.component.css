@@ -1,0 +1,12 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 50%;
+
+    div.genres {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

@@ -1,11 +1,9 @@
-<div class="flex h-[100%] justify-center">
+<div class="container">
     @if (authService.status() === 'authenticating') {
         <p-progressSpinner></p-progressSpinner>
     } @else {
-        <form
-            [formGroup]="loginForm"
-            class="flex flex-col gap-8 self-center rounded border-2 border-solid border-black px-5 py-8">
-            <div class="flex flex-col gap-4">
+        <form [formGroup]="loginForm">
+            <div>
                 <app-text-input
                     [label]="'email'"
                     [type]="'email'"

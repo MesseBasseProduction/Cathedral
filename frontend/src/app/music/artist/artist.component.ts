@@ -7,9 +7,8 @@ import { ArtistCreateComponent } from './artist-create/artist-create.component'
     selector: 'app-artist',
     standalone: true,
     imports: [ArtistListComponent, ArtistCreateComponent],
-    providers: [ArtistService],
     templateUrl: './artist.component.html',
-    styleUrl: './artist.component.scss',
+    styleUrl: './artist.component.css',
 })
 export class ArtistComponent implements OnInit {
     public readonly artistService = inject(ArtistService)

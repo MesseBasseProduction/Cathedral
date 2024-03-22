@@ -1,3 +1,4 @@
+import { provideHttpClient, withRequestsMadeViaParent } from '@angular/common/http'
 import { Routes } from '@angular/router'
 
 export const routes: Routes = [
@@ -8,5 +9,6 @@ export const routes: Routes = [
     {
         path: 'artist',
         loadComponent: () => import('./artist/artist.component').then(c => c.ArtistComponent),
+        providers: [provideHttpClient(withRequestsMadeViaParent())],
     },
 ]

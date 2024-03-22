@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core'
 import { Album, AlbumCreate, AlbumUpdate } from '../../models/album.model'
 import { CrudService } from '../crud.service'
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class AlbumService extends CrudService<Album> {
     override path = this.host + '/album/'
 

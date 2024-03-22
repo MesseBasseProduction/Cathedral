@@ -1,0 +1,12 @@
+div.container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    app-artist-list {
+        grid-column: span 1 / span 1;
+    }
+
+    app-artist-create {
+        grid-column: span 1 / span 1;
+    }
+}

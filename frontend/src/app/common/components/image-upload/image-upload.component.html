@@ -1,0 +1,15 @@
+<div class="container">
+    <label for="img">{{ label() }}</label>
+    <p-fileUpload
+        id="img"
+        mode="advanced"
+        chooseLabel="Browse"
+        chooseIcon="pi pi-folder-open"
+        cancelLabel="Remove"
+        cancelIcon="pi pi-times"
+        [showUploadButton]="false"
+        accept="image/*"
+        [multiple]="multiple()"
+        (onSelect)="onSelect($event)"
+        [disabled]="disabled()"></p-fileUpload>
+</div>

@@ -5,6 +5,6 @@ import { Component } from '@angular/core'
     standalone: true,
     imports: [],
     templateUrl: './artist-delete.component.html',
-    styleUrl: './artist-delete.component.scss',
+    styleUrl: './artist-delete.component.css',
 })
 export class ArtistDeleteComponent {}

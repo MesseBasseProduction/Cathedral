@@ -1,4 +1,4 @@
-<div class="flex h-[100%] justify-center">
+<div class="container">
     @switch (registerService.status()) {
         @case ('inprogress') {
             <p-progressSpinner></p-progressSpinner>
@@ -10,10 +10,8 @@
             </div>
         }
         @default {
-            <form
-                [formGroup]="registerForm"
-                class="flex flex-col gap-8 self-center rounded border-2 border-solid border-black px-5 py-8">
-                <div class="flex flex-col gap-4">
+            <form [formGroup]="registerForm">
+                <div>
                     <div>
                         <app-text-input
                             [label]="'email'"

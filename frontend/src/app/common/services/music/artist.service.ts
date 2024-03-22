@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core'
 import { Artist, ArtistCreate, ArtistUpdate } from '../../models/artist.model'
 import { CrudService } from '../crud.service'
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class ArtistService extends CrudService<Artist> {
     override path = this.host + '/artist/'
 

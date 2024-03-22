@@ -9,6 +9,6 @@ import { NavigationComponent } from './layout/navigation/navigation.component'
     standalone: true,
     imports: [RouterOutlet, HeaderComponent, FooterComponent, NavigationComponent],
     templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
+    styleUrl: './app.component.css',
 })
 export class AppComponent {}

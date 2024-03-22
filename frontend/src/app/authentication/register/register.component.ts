@@ -26,7 +26,7 @@ type RegisterFormType = {
     ],
     providers: [RegisterService, AuthValidators],
     templateUrl: './register.component.html',
-    styleUrl: './register.component.scss',
+    styleUrl: './register.component.css',
 })
 export class RegisterComponent {
     public readonly registerService = inject(RegisterService)

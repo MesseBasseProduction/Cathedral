@@ -10,7 +10,7 @@ import { ThemeVariantToggleComponent } from '../../common/components/theme-varia
     standalone: true,
     imports: [RouterLink, MenuModule, ThemeVariantToggleComponent],
     templateUrl: './header.component.html',
-    styleUrl: './header.component.scss',
+    styleUrl: './header.component.css',
 })
 export class HeaderComponent {
     public readonly authService = inject(AuthService)

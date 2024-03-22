@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router'
     standalone: true,
     imports: [RouterLink],
     templateUrl: './music.component.html',
-    styleUrl: './music.component.scss',
+    styleUrl: './music.component.css',
 })
 export class MusicComponent {}

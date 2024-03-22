@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core'
 import { CrudService } from '../crud.service'
 import { Release, ReleaseCreate, ReleaseUpdate } from '../../models/release.model'
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class ReleaseService extends CrudService<Release> {
     override path = this.host + '/release/'
 

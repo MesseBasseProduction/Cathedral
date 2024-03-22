@@ -9,18 +9,36 @@
         [parentForm]="createForm"
         label="Main Link"
         type="text"></app-text-input>
-    <div>
+    <div class="genres">
         <label for="genres">Genres</label>
         <p-chips id="genres" formControlName="genres"></p-chips>
     </div>
     <div formArrayName="descriptions">
         @for (desc of createForm.controls.descriptions.controls; track desc; let i = $index) {
             <app-description-input [formControlName]="i"></app-description-input>
+            @if (i !== 0) {
+                <p-button
+                    [raised]="true"
+                    icon="pi pi-times"
+                    (onClick)="removeDescription(i)"
+                    label="Remove"></p-button>
+            }
         }
+        <p-button icon="pi pi-plus" (onClick)="addDescription()" label="Add"></p-button>
     </div>
     <div formArrayName="links">
         @for (link of createForm.controls.links.controls; track link; let i = $index) {
             <app-link-input [formControlName]="i"></app-link-input>
+            @if (i !== 0) {
+                <p-button icon="pi pi-times" (onClick)="removeLink(i)" label="Remove"></p-button>
+            }
         }
+        <p-button icon="pi pi-plus" (onClick)="addLink()" label="Add"></p-button>
+    </div>
+    <div>
+        <app-image-upload
+            [multiple]="false"
+            label="Profile picture"
+            formControlName="image"></app-image-upload>
     </div>
 </form>
