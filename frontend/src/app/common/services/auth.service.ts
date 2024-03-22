@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable, computed, effect, inject, signal } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { EMPTY, Subject, catchError, switchMap } from 'rxjs'
+import { EMPTY, Subject, catchError, startWith, switchMap, filter } from 'rxjs'
 import { environment } from '../../../environments/environment'
 import {
     LOCAL_STORAGE_ID_TOKEN_EXP_KEY,
@@ -76,7 +76,11 @@ export class AuthService {
             .pipe(takeUntilDestroyed())
             .subscribe(() => this.state.update(state => ({ ...state, status: 'authenticating' })))
         this.userLoggedIn$
-            .pipe(takeUntilDestroyed())
+            .pipe(
+                takeUntilDestroyed(),
+                startWith(this.getCredsFromLocalStorage()),
+                filter(val => val !== null)
+            )
             .subscribe(creds =>
                 this.state.update(state => ({ ...state, creds: creds, status: 'authenticated' }))
             )
@@ -94,11 +98,20 @@ export class AuthService {
             if (creds) {
                 localStorage.setItem(LOCAL_STORAGE_ID_TOKEN_KEY, creds.token)
                 localStorage.setItem(LOCAL_STORAGE_ID_TOKEN_EXP_KEY, creds.expiry)
-            } else if (creds == null) {
+            } else if (creds === null) {
                 localStorage.removeItem(LOCAL_STORAGE_ID_TOKEN_KEY)
                 localStorage.removeItem(LOCAL_STORAGE_ID_TOKEN_EXP_KEY)
             }
         })
+    }
+
+    private getCredsFromLocalStorage(): LoginResult | null {
+        const token = localStorage.getItem(LOCAL_STORAGE_ID_TOKEN_KEY)
+        const expiry = localStorage.getItem(LOCAL_STORAGE_ID_TOKEN_EXP_KEY)
+        if (token && expiry) {
+            return { token: token, expiry: expiry }
+        }
+        return null
     }
 
     public login(credentials: UserCredentials) {
