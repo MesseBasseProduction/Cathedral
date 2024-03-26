@@ -1,5 +1,13 @@
-<ul>
-    @for (artist of artists(); track artist.id) {
-        <li>{{ artist.name }}</li>
-    }
-</ul>
+<p-dataView #artistView [value]="artists()">
+    <ng-template pTemplate="list" let-artists>
+        <div class="artist-grid">
+            @for (artist of artists; track artist; let i = $index) {
+                <img class="artist-pic" [alt]="artist.name" [src]="artist.image" />
+                <div class="artist-name">{{ artist.name }}</div>
+                <div class="artist-main-link">{{ artist.mainLink }}</div>
+                <div class="artist-genres">{{ artist.genres }}</div>
+                <div class="artist-actions">Details, Update, Delete</div>
+            }
+        </div>
+    </ng-template>
+</p-dataView>

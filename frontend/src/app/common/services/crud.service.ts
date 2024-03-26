@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { computed, inject, signal } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { EMPTY, Subject, catchError, map, merge, switchMap, tap } from 'rxjs'
+import { EMPTY, Subject, catchError, map, merge, switchMap } from 'rxjs'
 import { environment } from '../../../environments/environment'
 import { EntityList } from '../models/entity-list.model'
 
@@ -41,7 +41,6 @@ export class CrudService<TEntity extends { id: number }> {
     /** Sources responsible for loading a list of TEntity. */
     protected loadEntities$ = new Subject<unknown>()
     protected entitiesLoaded$ = this.loadEntities$.pipe(
-        tap(() => console.log(this.http)),
         switchMap(() =>
             this.http.get<EntityList<TEntity>>(this.path).pipe(
                 catchError(err => {

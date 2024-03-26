@@ -1,0 +1,25 @@
+div.artist-grid {
+    display: grid;
+    grid-template-columns: [img-start] 5rem [img-end name-start] 1fr [name-end main-link-start] 1fr [main-link-end genres-start] 1fr [genres-end action-start] 1fr [action-end];
+    grid-auto-rows: minmax(5rem, auto);
+
+    .artist-pic {
+        grid-column: img;
+    }
+
+    .artist-name {
+        grid-column: name;
+    }
+
+    .artist-main-link {
+        grid-column: main-link;
+    }
+
+    .artist-genres {
+        grid-column: genres;
+    }
+
+    .artist-actions {
+        grid-column: actions;
+    }
+}
