@@ -55,5 +55,8 @@
             formControlName="image"></app-image-upload>
     </div>
 
-    <p-button label="Submit" (onClick)="onSubmit()"></p-button>
+    <p-button
+        label="Submit"
+        (onClick)="onSubmit()"
+        [disabled]="createForm.pristine || createForm.invalid"></p-button>
 </form>

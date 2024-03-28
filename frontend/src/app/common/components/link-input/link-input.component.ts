@@ -6,18 +6,20 @@ import {
     NG_VALUE_ACCESSOR,
     ReactiveFormsModule,
 } from '@angular/forms'
-import { TextInputComponent } from '../text-input/text-input.component'
 import { Link } from '../../models/link.model'
+import { SelectInputComponent } from '../select-input/select-input.component'
+import { TextInputComponent } from '../text-input/text-input.component'
+import { LinkTypes } from '../../enums/link-type.enum'
 
 type LinkForm = {
-    type: FormControl<string>
+    type: FormControl<string | null>
     url: FormControl<string>
 }
 
 @Component({
     selector: 'app-link-input',
     standalone: true,
-    imports: [ReactiveFormsModule, TextInputComponent],
+    imports: [ReactiveFormsModule, SelectInputComponent, TextInputComponent],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -31,6 +33,8 @@ type LinkForm = {
 export class LinkInputComponent implements ControlValueAccessor {
     private readonly fb = inject(FormBuilder)
 
+    options = Object.entries(LinkTypes).map(([label, code]) => ({ label: label, code: code }))
+
     linkForm = this.fb.group<LinkForm>({
         type: this.fb.nonNullable.control(''),
         url: this.fb.nonNullable.control(''),
@@ -40,7 +44,14 @@ export class LinkInputComponent implements ControlValueAccessor {
         this.linkForm.setValue(description)
     }
 
-    registerOnChange(fn: (description: Partial<Link>) => void) {
+    registerOnChange(
+        fn: (
+            description: Partial<{
+                type: string | null
+                url: string
+            }>
+        ) => void
+    ) {
         this.linkForm.valueChanges.subscribe(fn)
     }
 

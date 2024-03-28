@@ -5,20 +5,30 @@ import {
     FormControl,
     NG_VALUE_ACCESSOR,
     ReactiveFormsModule,
+    Validators,
 } from '@angular/forms'
+import { DropdownModule } from 'primeng/dropdown'
 import { InputTextareaModule } from 'primeng/inputtextarea'
+import { DescriptionLangEnum, DescriptionLangs } from '../../enums/description-lang.enum'
 import { Description } from '../../models/description.model'
 import { TextInputComponent } from '../text-input/text-input.component'
+import { SelectInputComponent } from '../select-input/select-input.component'
 
 type DescriptionForm = {
-    lang: FormControl<string>
+    lang: FormControl<DescriptionLangEnum | null>
     description: FormControl<string>
 }
 
 @Component({
     selector: 'app-description-input',
     standalone: true,
-    imports: [InputTextareaModule, ReactiveFormsModule, TextInputComponent],
+    imports: [
+        DropdownModule,
+        InputTextareaModule,
+        ReactiveFormsModule,
+        SelectInputComponent,
+        TextInputComponent,
+    ],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -32,16 +42,25 @@ type DescriptionForm = {
 export class DescriptionInputComponent implements ControlValueAccessor {
     private readonly fb = inject(FormBuilder)
 
+    public readonly descriptionLangs = Object.values(DescriptionLangs)
+
     descriptionForm = this.fb.nonNullable.group<DescriptionForm>({
-        lang: this.fb.nonNullable.control(''),
-        description: this.fb.nonNullable.control(''),
+        lang: this.fb.nonNullable.control(null, [Validators.required]),
+        description: this.fb.nonNullable.control('', [Validators.required]),
     })
 
     writeValue(description: Description) {
         this.descriptionForm.setValue(description)
     }
 
-    registerOnChange(fn: (description: Partial<Description>) => void) {
+    registerOnChange(
+        fn: (
+            description: Partial<{
+                lang: DescriptionLangEnum | null
+                description: string
+            }>
+        ) => void
+    ) {
         this.descriptionForm.valueChanges.subscribe(fn)
     }
 

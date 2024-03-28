@@ -1,0 +1,18 @@
+<div class="container" [formGroup]="parentForm">
+    <label for="select">{{ label }}</label>
+    @if (optionLabel === null && optionValue === null) {
+        <p-dropdown
+            id="select"
+            [formControlName]="inputName"
+            [options]="options"
+            [placeholder]="placeholder"></p-dropdown>
+    } @else if (optionLabel !== null && optionValue !== null) {
+        <p-dropdown
+            id="select"
+            [formControlName]="inputName"
+            [options]="options"
+            [optionLabel]="optionLabel"
+            [optionValue]="optionValue"
+            [placeholder]="placeholder"></p-dropdown>
+    }
+</div>

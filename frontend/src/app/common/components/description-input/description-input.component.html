@@ -1,9 +1,10 @@
 <form [formGroup]="descriptionForm">
-    <app-text-input
-        inputName="lang"
-        type="text"
+    <app-select-input
         [parentForm]="descriptionForm"
-        label="Language"></app-text-input>
+        inputName="lang"
+        label="Language"
+        [options]="descriptionLangs"
+        placeholder="Select a link type"></app-select-input>
     <div>
         <label for="desc">Description</label>
         <textarea id="desc" formControlName="description" pInputTextarea></textarea>

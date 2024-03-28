@@ -1,4 +1,6 @@
+import { DescriptionLangEnum } from '../enums/description-lang.enum'
+
 export type Description = {
-    lang: string
+    lang: DescriptionLangEnum | null
     description: string
 }

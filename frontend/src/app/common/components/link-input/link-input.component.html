@@ -1,8 +1,9 @@
 <form [formGroup]="linkForm">
-    <app-text-input
-        inputName="type"
-        type="text"
+    <app-select-input
         [parentForm]="linkForm"
-        label="Type"></app-text-input>
+        inputName="type"
+        label="Type"
+        [options]="options"
+        placeholder="Select a link type"></app-select-input>
     <app-text-input inputName="url" type="url" [parentForm]="linkForm" label="URL"></app-text-input>
 </form>
