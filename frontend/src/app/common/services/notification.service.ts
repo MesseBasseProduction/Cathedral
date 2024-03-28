@@ -1,28 +1,20 @@
-import { Injectable, signal } from '@angular/core'
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { Subject } from 'rxjs'
+import { Injectable, inject } from '@angular/core'
+import { MessageService } from 'primeng/api'
 import { Notification } from '../models/notification.model'
 
 @Injectable({
     providedIn: 'root',
 })
 export class NotificationService {
-    // State
-    private notifications = signal<Notification[]>([])
-
-    // Source
-    private add$ = new Subject<Notification>()
-
-    constructor() {
-        this.add$.pipe(takeUntilDestroyed()).subscribe(notif =>
-            this.notifications.update(notifs => {
-                notifs.push(notif)
-                return notifs
-            })
-        )
-    }
+    private readonly messageService = inject(MessageService)
 
     public add(notif: Notification) {
-        this.add$.next(notif)
+        this.messageService.add({
+            severity: notif.level,
+            detail: notif.message,
+            key: 'footer',
+            summary: notif.title,
+            closable: true,
+        })
     }
 }

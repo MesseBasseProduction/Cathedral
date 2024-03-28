@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http'
 import { computed, inject, signal } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { EMPTY, Subject, catchError, map, merge, switchMap } from 'rxjs'
+import { EMPTY, Subject, catchError, map, merge, switchMap, tap } from 'rxjs'
 import { environment } from '../../../environments/environment'
 import { EntityList } from '../models/entity-list.model'
+import { ErrorWrapper } from '../models/error.model'
+import { NotificationService } from './notification.service'
 
 type CrudState<TEntity> = {
     status: 'loading' | 'success' | 'error' | undefined
-    error: Error | null
+    error: ErrorWrapper | null
     entities: TEntity[]
 }
 
@@ -19,9 +21,11 @@ type CrudState<TEntity> = {
  * TEntity is a type parameter which must have an 'id' field.
  */
 export class CrudService<TEntity extends { id: number }> {
+    private readonly notificationService = inject(NotificationService)
     protected readonly http = inject(HttpClient)
     protected readonly host = environment.apiHost
     protected path = this.host + '/'
+    protected entityName: string
 
     // State
     /**
@@ -36,7 +40,7 @@ export class CrudService<TEntity extends { id: number }> {
     // Sources
 
     /** Error source which is updated when an error has occurred. */
-    protected error$ = new Subject<Error>()
+    protected error$ = new Subject<ErrorWrapper>()
 
     /** Sources responsible for loading a list of TEntity. */
     protected loadEntities$ = new Subject<unknown>()
@@ -44,7 +48,7 @@ export class CrudService<TEntity extends { id: number }> {
         switchMap(() =>
             this.http.get<EntityList<TEntity>>(this.path).pipe(
                 catchError(err => {
-                    this.error$.next(err)
+                    this.error$.next({ err: err, source: `Load ${this.entityName}` })
                     return EMPTY
                 })
             )
@@ -57,7 +61,7 @@ export class CrudService<TEntity extends { id: number }> {
         switchMap(entity =>
             this.http.post<TEntity>(this.path, entity).pipe(
                 catchError(err => {
-                    this.error$.next(err)
+                    this.error$.next({ err: err, source: `Create ${this.entityName}` })
                     return EMPTY
                 })
             )
@@ -70,7 +74,7 @@ export class CrudService<TEntity extends { id: number }> {
         switchMap(([id, entity]) =>
             this.http.patch<TEntity>(this.path + `${id}/`, entity).pipe(
                 catchError(err => {
-                    this.error$.next(err)
+                    this.error$.next({ err: err, source: `Update ${this.entityName}` })
                     return EMPTY
                 })
             )
@@ -84,7 +88,7 @@ export class CrudService<TEntity extends { id: number }> {
             this.http.delete<unknown>(this.path + `${id}/`).pipe(
                 map(() => id),
                 catchError(err => {
-                    this.error$.next(err)
+                    this.error$.next({ err: err, source: `Delete ${this.entityName}` })
                     return EMPTY
                 })
             )
@@ -98,10 +102,21 @@ export class CrudService<TEntity extends { id: number }> {
     public error = computed(() => this.state().error)
     public entities = computed(() => this.state().entities)
 
-    constructor() {
+    constructor(entityName: string) {
+        this.entityName = entityName
+
         // Reducers
         this.error$
-            .pipe(takeUntilDestroyed())
+            .pipe(
+                takeUntilDestroyed(),
+                tap(err =>
+                    this.notificationService.add({
+                        level: 'error',
+                        title: err.source,
+                        message: err.err.message,
+                    })
+                )
+            )
             .subscribe(err =>
                 this.state.update(state => ({ ...state, error: err, status: 'error' }))
             )

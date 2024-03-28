@@ -8,6 +8,10 @@ import { CrudService } from '../crud.service'
 export class AlbumService extends CrudService<Album> {
     override path = this.host + '/album/'
 
+    constructor() {
+        super('Album')
+    }
+
     public loadAlbums() {
         this.loadEntities$.next({})
     }

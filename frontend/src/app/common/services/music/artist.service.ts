@@ -6,7 +6,11 @@ import { CrudService } from '../crud.service'
     providedIn: 'root',
 })
 export class ArtistService extends CrudService<Artist> {
-    override path = this.host + '/artist/'
+    override readonly path = this.host + '/artist/'
+
+    constructor() {
+        super('Artist')
+    }
 
     public loadArtists() {
         this.loadEntities$.next({})

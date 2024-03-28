@@ -1,4 +1,5 @@
 export type Notification = {
+    title: string
     message: string
-    level: 'info' | 'warn' | 'error'
+    level: 'success' | 'info' | 'warn' | 'error'
 }

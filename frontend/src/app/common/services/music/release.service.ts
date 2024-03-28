@@ -8,6 +8,10 @@ import { Release, ReleaseCreate, ReleaseUpdate } from '../../models/release.mode
 export class ReleaseService extends CrudService<Release> {
     override path = this.host + '/release/'
 
+    constructor() {
+        super('Release')
+    }
+
     public loadReleases() {
         this.loadEntities$.next({})
     }
