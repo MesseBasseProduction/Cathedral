@@ -1,12 +1,21 @@
 div.container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: [header-start] 5rem [header-end content-start] 1fr [content-end];
+
+    header {
+        grid-column: span 2 / span 2;
+        grid-row: header;
+    }
 
     app-artist-list {
         grid-column: span 1 / span 1;
+        grid-row: content;
     }
 
-    app-artist-create {
+    app-artist-create,
+    app-artist-detail {
         grid-column: span 1 / span 1;
+        grid-row: content;
     }
 }

@@ -1,12 +1,31 @@
-<p-dataView #artistView [value]="artists()">
+<p-dataView #artistView [value]="artists()" filterBy="name">
+    <ng-template pTemplate="header">
+        <div class="artist-grid-header">
+            <p-iconField iconPosition="left">
+                <p-inputIcon styleClass="pi pi-search" />
+                <input
+                    pInputText
+                    type="search"
+                    (input)="artistView.filter($any($event).target.value)"
+                    placeholder="Search by name" />
+            </p-iconField>
+            <p-button icon="pi pi-plus" label="Add" (onClick)="onAdd()"></p-button>
+        </div>
+    </ng-template>
     <ng-template pTemplate="list" let-artists>
         <div class="artist-grid">
             @for (artist of artists; track artist; let i = $index) {
-                <img class="artist-pic" [alt]="artist.name" [src]="artist.image" />
-                <div class="artist-name">{{ artist.name }}</div>
-                <div class="artist-main-link">{{ artist.mainLink }}</div>
-                <div class="artist-genres">{{ artist.genres }}</div>
-                <div class="artist-actions">Details, Update, Delete</div>
+                <div class="artist-row">
+                    <img class="artist-pic" [alt]="artist.name" [src]="artist.image" />
+                    <div class="artist-name">{{ artist.name }}</div>
+                    <div class="artist-main-link">{{ artist.mainLink }}</div>
+                    <div class="artist-genres">{{ artist.genres }}</div>
+                    <div class="artist-actions">
+                        <p-button icon="pi pi-eye" (onClick)="onDetail(artist)"></p-button>
+                        <p-button icon="pi pi-pencil" (onClick)="onUpdate(artist)"></p-button>
+                        <p-button icon="pi pi-times" (onClick)="onDelete(artist.id)"></p-button>
+                    </div>
+                </div>
             }
         </div>
     </ng-template>

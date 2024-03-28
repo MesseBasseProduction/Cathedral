@@ -1,4 +1,21 @@
 <div class="container">
-    <app-artist-list [artists]="artistService.entities()"></app-artist-list>
-    <app-artist-create></app-artist-create>
+    <header>
+        <h2>Artists</h2>
+    </header>
+    <app-artist-list
+        [artists]="artistService.entities()"
+        [(mode)]="mode"
+        [(artist)]="artist"></app-artist-list>
+    @switch (mode) {
+        @case ('create') {
+            <app-artist-create mode="create"></app-artist-create>
+        }
+        @case ('update') {
+            <app-artist-create mode="update" [artist]="artist"></app-artist-create>
+        }
+        @case ('detail') {
+            <app-artist-detail></app-artist-detail>
+        }
+        @default {}
+    }
 </div>

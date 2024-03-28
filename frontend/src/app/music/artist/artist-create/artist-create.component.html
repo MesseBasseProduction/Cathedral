@@ -11,29 +11,42 @@
         type="text"></app-text-input>
     <div class="genres">
         <label for="genres">Genres</label>
-        <p-chips id="genres" formControlName="genres"></p-chips>
+        <p-chips id="genres" formControlName="genres" styleClass="genres-input"></p-chips>
     </div>
     <div formArrayName="descriptions">
-        @for (desc of createForm.controls.descriptions.controls; track desc; let i = $index) {
-            <app-description-input [formControlName]="i"></app-description-input>
-            @if (i !== 0) {
-                <p-button
-                    [raised]="true"
-                    icon="pi pi-times"
-                    (onClick)="removeDescription(i)"
-                    label="Remove"></p-button>
+        <p-fieldset legend="Description" [toggleable]="true">
+            @for (desc of createForm.controls.descriptions.controls; track desc; let i = $index) {
+                @if (i !== 0) {
+                    <p-divider></p-divider>
+                }
+                <app-description-input [formControlName]="i"></app-description-input>
+                @if (i !== 0) {
+                    <p-button
+                        [raised]="true"
+                        icon="pi pi-times"
+                        (onClick)="removeDescription(i)"
+                        label="Remove"></p-button>
+                }
             }
-        }
-        <p-button icon="pi pi-plus" (onClick)="addDescription()" label="Add"></p-button>
+            <p-button icon="pi pi-plus" (onClick)="addDescription()" label="Add"></p-button>
+        </p-fieldset>
     </div>
     <div formArrayName="links">
-        @for (link of createForm.controls.links.controls; track link; let i = $index) {
-            <app-link-input [formControlName]="i"></app-link-input>
-            @if (i !== 0) {
-                <p-button icon="pi pi-times" (onClick)="removeLink(i)" label="Remove"></p-button>
+        <p-fieldset legend="Links" [toggleable]="true">
+            @for (link of createForm.controls.links.controls; track link; let i = $index) {
+                @if (i !== 0) {
+                    <p-divider></p-divider>
+                }
+                <app-link-input [formControlName]="i"></app-link-input>
+                @if (i !== 0) {
+                    <p-button
+                        icon="pi pi-times"
+                        (onClick)="removeLink(i)"
+                        label="Remove"></p-button>
+                }
             }
-        }
-        <p-button icon="pi pi-plus" (onClick)="addLink()" label="Add"></p-button>
+            <p-button icon="pi pi-plus" (onClick)="addLink()" label="Add"></p-button>
+        </p-fieldset>
     </div>
     <div>
         <app-image-upload
@@ -41,4 +54,6 @@
             label="Profile picture"
             formControlName="image"></app-image-upload>
     </div>
+
+    <p-button label="Submit" (onClick)="onSubmit()"></p-button>
 </form>

@@ -1,8 +1,17 @@
 form {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--form-fields-gap);
     width: 50%;
+
+    padding: 1rem;
+
+    border-radius: 5px;
+
+    background-color: var(--surface-card);
+
+    position: relative;
+    left: 25%;
 
     div.genres {
         display: flex;
