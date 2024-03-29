@@ -1,0 +1,31 @@
+div.container {
+    --img-height: 20vh;
+    --img-ratio: 910/512;
+
+    display: grid;
+    grid-template:
+        'img img' var(--img-height)
+        'name links'
+        'genres links'
+        'descs links' / 2fr 1fr;
+
+    img {
+        grid-area: img;
+    }
+
+    div.name {
+        grid-area: name;
+    }
+
+    div.genres {
+        grid-area: genres;
+    }
+
+    div.descs {
+        grid-area: descs;
+    }
+
+    div.links {
+        grid-area: links;
+    }
+}

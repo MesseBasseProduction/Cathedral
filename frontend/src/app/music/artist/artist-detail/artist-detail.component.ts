@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'
+import { Component, input } from '@angular/core'
+import { Artist } from '../../../common/models/artist.model'
 
 @Component({
     selector: 'app-artist-detail',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core'
     templateUrl: './artist-detail.component.html',
     styleUrl: './artist-detail.component.css',
 })
-export class ArtistDetailComponent {}
+export class ArtistDetailComponent {
+    artist = input.required<Artist>()
+}

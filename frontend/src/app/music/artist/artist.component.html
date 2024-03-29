@@ -14,7 +14,9 @@
             <app-artist-create mode="update" [artist]="artist"></app-artist-create>
         }
         @case ('detail') {
-            <app-artist-detail></app-artist-detail>
+            @if (artist) {
+                <app-artist-detail [artist]="artist"></app-artist-detail>
+            }
         }
         @default {}
     }

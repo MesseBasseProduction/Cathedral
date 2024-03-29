@@ -1,1 +1,16 @@
-<p>artist-detail works!</p>
+<div class="container">
+    <img [src]="artist().image" [alt]="artist().name" />
+    <div class="name">{{ artist().name }}</div>
+    <div class="genres">{{ artist().genres }}</div>
+    <div class="links">
+        <div>{{ artist().mainLink }}</div>
+        @for (link of artist().links; track link) {
+            <div>{{ link.type }}: {{ link.url }}</div>
+        }
+    </div>
+    <div class="descs">
+        @for (description of artist().descriptions; track description) {
+            <div>{{ description.lang }}: {{ description.description }}</div>
+        }
+    </div>
+</div>
