@@ -1,0 +1,12 @@
+.link {
+    display: flex;
+
+    img {
+        height: 16px;
+        width: 16px;
+    }
+
+    a {
+        padding-left: 0.5rem;
+    }
+}

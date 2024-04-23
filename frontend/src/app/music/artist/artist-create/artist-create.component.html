@@ -11,7 +11,7 @@
         type="text"></app-text-input>
     <div class="genres">
         <label for="genres">Genres</label>
-        <p-chips id="genres" formControlName="genres" styleClass="genres-input"></p-chips>
+        <p-chips id="genres" formControlName="genres"></p-chips>
     </div>
     <div formArrayName="descriptions">
         <p-fieldset legend="Description" [toggleable]="true">
@@ -22,13 +22,19 @@
                 <app-description-input [formControlName]="i"></app-description-input>
                 @if (i !== 0) {
                     <p-button
+                        styleClass="remove-description"
                         [raised]="true"
                         icon="pi pi-times"
                         (onClick)="removeDescription(i)"
                         label="Remove"></p-button>
                 }
             }
-            <p-button icon="pi pi-plus" (onClick)="addDescription()" label="Add"></p-button>
+            <p-divider></p-divider>
+            <p-button
+                styleClass="add-description"
+                icon="pi pi-plus"
+                (onClick)="addDescription()"
+                label="Add"></p-button>
         </p-fieldset>
     </div>
     <div formArrayName="links">
@@ -40,12 +46,18 @@
                 <app-link-input [formControlName]="i"></app-link-input>
                 @if (i !== 0) {
                     <p-button
+                        styleClass="remove-link"
                         icon="pi pi-times"
                         (onClick)="removeLink(i)"
                         label="Remove"></p-button>
                 }
             }
-            <p-button icon="pi pi-plus" (onClick)="addLink()" label="Add"></p-button>
+            <p-divider></p-divider>
+            <p-button
+                styleClass="add-link"
+                icon="pi pi-plus"
+                (onClick)="addLink()"
+                label="Add"></p-button>
         </p-fieldset>
     </div>
     <div>

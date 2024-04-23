@@ -1,16 +1,20 @@
 <div class="container">
     <img [src]="artist().image" [alt]="artist().name" />
-    <div class="name">{{ artist().name }}</div>
+    <h2 class="name">{{ artist().name }}</h2>
     <div class="genres">{{ artist().genres }}</div>
+    <a [href]="artist().mainLink" class="main-link">{{ artist().mainLink }}</a>
     <div class="links">
-        <div>{{ artist().mainLink }}</div>
-        @for (link of artist().links; track link) {
-            <div>{{ link.type }}: {{ link.url }}</div>
+        @for (link of artist().links; track link; let i = $index) {
+            <app-link-display [link]="link" class="link"></app-link-display>
         }
     </div>
     <div class="descs">
         @for (description of artist().descriptions; track description) {
-            <div>{{ description.lang }}: {{ description.description }}</div>
+            <p-divider></p-divider>
+            <div class="desc">
+                <div [ngClass]="['lang', description.lang | lowercase]"></div>
+                {{ description.description }}
+            </div>
         }
     </div>
 </div>

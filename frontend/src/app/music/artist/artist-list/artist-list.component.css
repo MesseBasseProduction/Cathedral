@@ -56,3 +56,13 @@ div.artist-grid {
         }
     }
 }
+
+:host ::ng-deep .p-dataview .p-dataview-header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+:host ::ng-deep .p-dataview .p-dataview-content {
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}

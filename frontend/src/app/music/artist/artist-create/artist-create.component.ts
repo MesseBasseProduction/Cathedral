@@ -88,16 +88,8 @@ export class ArtistCreateComponent {
     constructor() {
         effect(
             () => {
-                const artist = this.artist()
-                if (artist) {
-                    this.controls.name.setValue(artist.name)
-                    this.controls.mainLink.setValue(artist.mainLink)
-                    this.controls.genres.setValue(artist.genres)
-                    this.createForm.setControl(
-                        'descriptions',
-                        this.fb.nonNullable.array(artist.descriptions)
-                    )
-                    this.createForm.setControl('links', this.fb.nonNullable.array(artist.links))
+                if (this.artistService.status() === 'success') {
+                    this.createForm.reset()
                 }
             },
             // We have to allow signal writes because the underlying PrimeNG components use signals internally.
@@ -105,8 +97,16 @@ export class ArtistCreateComponent {
         )
         effect(
             () => {
-                if (this.artistService.status() === 'success') {
-                    this.createForm.reset()
+                const artist = this.artist()
+                if (artist) {
+                    this.controls.name.patchValue(artist.name)
+                    this.controls.mainLink.patchValue(artist.mainLink)
+                    this.controls.genres.patchValue(artist.genres)
+                    this.createForm.setControl(
+                        'descriptions',
+                        this.fb.nonNullable.array(artist.descriptions)
+                    )
+                    this.createForm.setControl('links', this.fb.nonNullable.array(artist.links))
                 }
             },
             // We have to allow signal writes because the underlying PrimeNG components use signals internally.

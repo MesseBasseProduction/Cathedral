@@ -10,6 +10,7 @@ import { Link } from '../../models/link.model'
 import { SelectInputComponent } from '../select-input/select-input.component'
 import { TextInputComponent } from '../text-input/text-input.component'
 import { LinkTypes } from '../../enums/link-type.enum'
+import { TitleCasePipe } from '@angular/common'
 
 type LinkForm = {
     type: FormControl<string | null>
@@ -19,7 +20,7 @@ type LinkForm = {
 @Component({
     selector: 'app-link-input',
     standalone: true,
-    imports: [ReactiveFormsModule, SelectInputComponent, TextInputComponent],
+    imports: [ReactiveFormsModule, SelectInputComponent, TextInputComponent, TitleCasePipe],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -33,15 +34,21 @@ type LinkForm = {
 export class LinkInputComponent implements ControlValueAccessor {
     private readonly fb = inject(FormBuilder)
 
-    options = Object.entries(LinkTypes).map(([label, code]) => ({ label: label, code: code }))
+    private readonly titleCase = new TitleCasePipe()
+
+    options = Object.entries(LinkTypes).map(([label, code]) => ({
+        label: this.titleCase.transform(label),
+        code: code,
+    }))
 
     linkForm = this.fb.group<LinkForm>({
         type: this.fb.nonNullable.control(''),
         url: this.fb.nonNullable.control(''),
     })
 
-    writeValue(description: Link) {
-        this.linkForm.setValue(description)
+    writeValue(link: Link) {
+        console.log(link)
+        this.linkForm.setValue(link)
     }
 
     registerOnChange(
