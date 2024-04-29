@@ -1,27 +1,40 @@
 header {
     background: var(--surface-card);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template:
+        'title nav menu'
+        'bread bread bread' auto / 1fr 1fr 1Fr;
     width: 100%;
     padding: 0.5rem 1rem;
     align-items: normal;
 
     h1 {
-        grid-column: 1;
+        grid-area: title;
         justify-self: left;
     }
 
     app-navigation {
-        grid-column: 2;
+        grid-area: nav;
         justify-self: center;
     }
 
-    div {
-        grid-column: 3;
+    div.menu {
+        grid-area: menu;
         justify-self: right;
 
         display: flex;
         gap: 0.5rem;
         margin: auto 0;
     }
+
+    div.bread {
+        grid-area: bread;
+        justify-self: left;
+    }
+}
+
+:host ::ng-deep .p-breadcrumb {
+    background: var(--surface-card);
+    border: 0px;
+    padding: 0px 0px;
 }

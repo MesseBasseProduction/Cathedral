@@ -1,7 +1,7 @@
 <header>
     <h1>Cathedral</h1>
     <app-navigation></app-navigation>
-    <div>
+    <div class="menu">
         @if (authService.creds()) {
             <p-menu #menu [popup]="true" [model]="menuItems">
                 <ng-template pTemplate="item" let-item>
@@ -14,5 +14,8 @@
             <a routerLink="/register">Register</a>
         }
         <app-theme-variant-toggle></app-theme-variant-toggle>
+    </div>
+    <div class="bread">
+        <p-breadcrumb [model]="breadcrumbItems()" [home]="breadcrumbHome"></p-breadcrumb>
     </div>
 </header>
