@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable, computed, inject, signal } from '@angular/core'
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop'
 import { EMPTY, Observable, Subject, catchError, exhaustMap, switchMap } from 'rxjs'
@@ -34,6 +34,10 @@ export class UserService {
         switchMap(() =>
             this.http.get<UserDetail>(this.path + '/me/').pipe(
                 catchError(err => {
+                    if (err instanceof HttpErrorResponse && err.status === 401) {
+                        // The current token is not valid anymore so we force a logout.
+                        this.authService.logout()
+                    }
                     this.error$.next(err)
                     return EMPTY
                 })

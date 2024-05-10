@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable, computed, effect, inject, signal } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { EMPTY, Subject, catchError, startWith, switchMap, filter } from 'rxjs'
+import { EMPTY, Subject, catchError, startWith, switchMap, filter, of } from 'rxjs'
 import { environment } from '../../../environments/environment'
 import {
     LOCAL_STORAGE_ID_TOKEN_EXP_KEY,
@@ -46,6 +46,11 @@ export class AuthService {
         switchMap(() =>
             this.http.post(this.path + '/logout/', null).pipe(
                 catchError(err => {
+                    if (err instanceof HttpErrorResponse && err.status === 401) {
+                        // The user's token is expired so we return a value to trigger
+                        // a state update to simulate a successfull logout.
+                        return of({})
+                    }
                     this.error$.next(err)
                     return EMPTY
                 })
