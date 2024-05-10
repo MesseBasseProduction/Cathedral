@@ -82,6 +82,7 @@ export class HeaderComponent implements OnInit {
                 breadCrumbs.push({
                     label: label,
                     url: url,
+                    target: '_self',
                 })
             }
 

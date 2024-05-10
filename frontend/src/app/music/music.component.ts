@@ -1,10 +1,10 @@
 import { Component } from '@angular/core'
-import { RouterLink } from '@angular/router'
+import { RouterLink, RouterOutlet } from '@angular/router'
 
 @Component({
     selector: 'app-music',
     standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink, RouterOutlet],
     templateUrl: './music.component.html',
     styleUrl: './music.component.css',
 })
