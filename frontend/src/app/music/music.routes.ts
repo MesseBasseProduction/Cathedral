@@ -8,8 +8,22 @@ export const routes: Routes = [
         children: [
             {
                 path: 'artist',
+                title: 'Artists',
                 loadComponent: () =>
                     import('./artist/artist.component').then(c => c.ArtistComponent),
+                providers: [provideHttpClient(withRequestsMadeViaParent())],
+            },
+            {
+                path: 'album',
+                title: 'Albums',
+                loadComponent: () => import('./album/album.component').then(c => c.AlbumComponent),
+                providers: [provideHttpClient(withRequestsMadeViaParent())],
+            },
+            {
+                path: 'release',
+                title: 'Releases',
+                loadComponent: () =>
+                    import('./release/release.component').then(c => c.ReleaseComponent),
                 providers: [provideHttpClient(withRequestsMadeViaParent())],
             },
         ],

@@ -1,3 +1,10 @@
 @if (userService.user()) {
-    <p-tabMenu [model]="menuItems"></p-tabMenu>
+    <nav>
+        @for (item of menuItems; track $index) {
+            <a [routerLink]="[item.url]" routerLinkActive="active"
+                ><span class="material-symbols-outlined">{{ item.icon_name }}</span
+                >{{ item.label }}</a
+            >
+        }
+    </nav>
 }

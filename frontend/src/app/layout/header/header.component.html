@@ -1,21 +1,23 @@
-<header>
-    <h1>Cathedral</h1>
-    <app-navigation></app-navigation>
-    <div class="menu">
-        @if (authService.creds()) {
-            <p-menu #menu [popup]="true" [model]="menuItems">
-                <ng-template pTemplate="item" let-item>
-                    <a [routerLink]="item.link">{{ item.label }}</a>
-                </ng-template>
-            </p-menu>
-            <p-button type="button" (click)="menu.toggle($event)" icon="pi pi-bars"></p-button>
-        } @else {
-            <a routerLink="/login">Login</a>
-            <a routerLink="/register">Register</a>
-        }
-        <app-theme-variant-toggle></app-theme-variant-toggle>
+<div class="menu">
+    <div class="main">
+        <img src="assets/logo.png" alt="Cathedral" />
+        <app-navigation></app-navigation>
+        <div class="menu">
+            @if (authService.creds()) {
+                <p-menu #menu [popup]="true" [model]="menuItems">
+                    <ng-template pTemplate="item" let-item>
+                        <a [routerLink]="item.link">{{ item.label }}</a>
+                    </ng-template>
+                </p-menu>
+                <p-button type="button" (click)="menu.toggle($event)" icon="pi pi-bars"></p-button>
+            } @else {
+                <a routerLink="/login">Login</a>
+                <a routerLink="/register">Register</a>
+            }
+            <app-theme-variant-toggle></app-theme-variant-toggle>
+        </div>
     </div>
-    <div class="bread">
-        <p-breadcrumb [model]="breadcrumbItems()" [home]="breadcrumbHome"></p-breadcrumb>
+    <div class="sec" [class.hidden]="secondaryItems().length < 1">
+        <app-secondary-navigation [(menuItems)]="secondaryItems"></app-secondary-navigation>
     </div>
-</header>
+</div>

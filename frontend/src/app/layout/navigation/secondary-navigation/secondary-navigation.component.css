@@ -1,7 +1,10 @@
-nav {
+div.secondary {
     display: flex;
     flex-direction: column;
     gap: var(--form-fields-gap);
+
+    padding: 6rem 0.5rem 1rem;
+    justify-items: center;
 
     a {
         display: flex;

@@ -1,31 +1,36 @@
 import { Component, inject } from '@angular/core'
-import { RouterLink } from '@angular/router'
-import { MenuItem } from 'primeng/api'
-import { TabMenuModule } from 'primeng/tabmenu'
+import { RouterLink, RouterLinkActive } from '@angular/router'
 import { UserService } from '../../common/services/user.service'
 
 @Component({
     selector: 'app-navigation',
     standalone: true,
-    imports: [RouterLink, TabMenuModule],
+    imports: [RouterLink, RouterLinkActive],
     templateUrl: './navigation.component.html',
     styleUrl: './navigation.component.css',
 })
 export class NavigationComponent {
     public readonly userService = inject(UserService)
 
-    public menuItems: MenuItem[] = [
+    public menuItems: {
+        label: string
+        url: string
+        icon_name: string
+    }[] = [
         {
             label: 'Music',
-            routerLink: '/music',
+            url: '/music',
+            icon_name: 'music_note',
         },
         {
             label: 'Apparel',
-            routerLink: '/apparel',
+            url: '/apparel',
+            icon_name: 'apparel',
         },
         {
             label: 'Software',
-            routerLink: '/software',
+            url: '/software',
+            icon_name: 'code',
         },
     ]
 }

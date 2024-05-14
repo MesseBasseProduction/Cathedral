@@ -1,40 +1,56 @@
-header {
-    background: var(--surface-card);
-    display: grid;
-    grid-template:
-        'title nav menu'
-        'bread bread bread' auto / 1fr 1fr 1Fr;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    align-items: normal;
+div.menu {
+    display: flex;
+    gap: 0.5rem;
+    height: 100%;
 
-    h1 {
-        grid-area: title;
-        justify-self: left;
+    --side-padding: 0.5rem;
+    --logo-width: 4rem;
+    --bar-width: var(--side-padding) * 2 + var(--logo-width);
+
+    div.main {
+        background: var(--surface-card);
+        display: grid;
+        grid-template:
+            'logo' auto
+            'nav' 1fr
+            'menu' auto;
+        height: 100%;
+        padding: 1rem 0.5rem;
+        border-radius: var(--border-radius);
+
+        justify-items: center;
+
+        img {
+            grid-area: logo;
+
+            width: 4rem;
+            padding-bottom: 1rem;
+        }
+
+        app-navigation {
+            grid-area: nav;
+        }
+
+        div.menu {
+            grid-area: menu;
+
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: auto 0;
+        }
     }
 
-    app-navigation {
-        grid-area: nav;
-        justify-self: center;
+    div.sec {
+        background: color-mix(in srgb, var(--surface-card) 35%, transparent);
+
+        border-radius: var(--border-radius);
+
+        height: fit-content;
+        width: var(--bar-width);
+
+        &.hidden {
+            width: 0%;
+        }
     }
-
-    div.menu {
-        grid-area: menu;
-        justify-self: right;
-
-        display: flex;
-        gap: 0.5rem;
-        margin: auto 0;
-    }
-
-    div.bread {
-        grid-area: bread;
-        justify-self: left;
-    }
-}
-
-:host ::ng-deep .p-breadcrumb {
-    background: var(--surface-card);
-    border: 0px;
-    padding: 0px 0px;
 }

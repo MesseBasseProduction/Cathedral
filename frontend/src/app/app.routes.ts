@@ -29,6 +29,7 @@ export const routes: Routes = [
     },
     {
         path: 'music',
+        title: 'Music',
         loadChildren: () => import('./music/music.routes').then(r => r.routes),
         canActivate: [authGuard],
     },

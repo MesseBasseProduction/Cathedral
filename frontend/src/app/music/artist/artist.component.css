@@ -14,15 +14,11 @@ div.container {
     app-artist-list {
         grid-column: span 1 / span 1;
         grid-row: content;
-
-        padding-left: 1rem;
     }
 
     app-artist-create,
     app-artist-detail {
         grid-column: span 1 / span 1;
         grid-row: content;
-
-        padding-right: 1rem;
     }
 }

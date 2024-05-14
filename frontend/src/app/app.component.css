@@ -1,13 +1,21 @@
 div.container {
     display: grid;
-    height: 100vh;
     grid-template:
-        'head head head'
-        'main main main' 1fr
-        'foot foot foot' auto / auto 1fr auto;
+        'head bread'
+        'head main' 1fr
+        'foot foot' auto / auto 1fr;
+
+    gap: 0.5rem;
+
+    height: 100vh;
+    padding: 5px;
 
     app-header {
         grid-area: head;
+    }
+
+    app-breadcrumbs {
+        grid-area: bread;
     }
 
     main {
