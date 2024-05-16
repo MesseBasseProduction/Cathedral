@@ -1,13 +1,24 @@
 div.container {
+    --container-gap: 0.5rem;
+    --container-padding: 5px;
+    --bread-height: 4rem;
+    --foot-height: 2rem;
+
     display: grid;
     grid-template:
-        'head bread'
-        'head main' 1fr
-        'foot foot' auto / auto 1fr;
+        'head bread' 3rem
+        'head main' calc(
+            100% -
+                (
+                    var(--container-gap) + 2 * var(--container-padding) + var(--bread-height) +
+                        var(--foot-height)
+                )
+        )
+        'foot foot' 3rem / auto 1fr;
 
     gap: 0.5rem;
 
-    height: 100vh;
+    height: 100%;
     padding: 5px;
 
     app-header {
