@@ -10,6 +10,7 @@ from .exposition import ExpositionViewSet, ExpositionPhotoViewSet
 from .member import MemberViewSet
 from .merch import MerchView
 from .organization import OrganizationViewSet
+from .podcast import PodcastViewSet, PodcastEpisodeViewSet
 from .release import ReleaseViewSet, ArtistReleaseViewSet
 from .software import SoftwareViewSet, SoftwareArtistViewSet
 from .video import VideoViewSet

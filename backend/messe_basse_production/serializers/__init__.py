@@ -10,6 +10,7 @@ from .exposition import ExpositionSerializer, ExpositionPhotoSerializer
 from .member import MemberSerializer
 from .merch import MerchSerializer
 from .organization import OrganizationSerializer
+from .podcast import PodcastSerializer, PodcastEpisodeSerializer
 from .release import ReleaseSerializer, ArtistReleaseSerializer
 from .software import SoftwareSerializer, SoftwareArtistSerializer
 from .video import VideoSerializer

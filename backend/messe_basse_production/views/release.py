@@ -26,6 +26,6 @@ class ArtistReleaseViewSet(viewsets.ModelViewSet):
             artist = Artist.objects.get(pk=self.kwargs['artist_pk'])
             context['artist'] = artist
         except Artist.DoesNotExist:
-            raise NotFound("Artist not found")
+            raise NotFound('Artist not found')
 
         return context
