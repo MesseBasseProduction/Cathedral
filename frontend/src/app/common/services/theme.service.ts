@@ -7,7 +7,7 @@ type Theme = 'lara-blue'
 type Variant = 'dark' | 'light'
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ThemeService {
     private readonly document = inject(DOCUMENT)

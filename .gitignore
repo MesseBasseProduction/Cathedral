@@ -37,6 +37,7 @@ frontend/coverage
 frontend/libpeerconnection.log
 frontend/testem.log
 frontend/typings
+frontend/.yarn
 
 # System files
 .DS_Store
