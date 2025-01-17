@@ -60,7 +60,6 @@ class ArtistReleaseSerializer(BaseReleaseSerializer):
 
     def create(self, validated_data):
         release = super().create(validated_data)
-        # print(release.artists.all())
         release.artists.add(self.context.get('artist'))
         return release
 
