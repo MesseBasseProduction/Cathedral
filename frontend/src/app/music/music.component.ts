@@ -6,6 +6,6 @@ import { RouterOutlet } from '@angular/router'
     standalone: true,
     imports: [RouterOutlet],
     templateUrl: './music.component.html',
-    styleUrl: './music.component.css',
+    styleUrl: './music.component.scss',
 })
 export class MusicComponent {}

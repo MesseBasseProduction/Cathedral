@@ -9,7 +9,7 @@ import { LinkDisplayComponent } from '../../../common/components/link-display/li
     standalone: true,
     imports: [CommonModule, DividerModule, LinkDisplayComponent],
     templateUrl: './artist-detail.component.html',
-    styleUrl: './artist-detail.component.css',
+    styleUrl: './artist-detail.component.scss',
 })
 export class ArtistDetailComponent {
     artist = input.required<Artist>()

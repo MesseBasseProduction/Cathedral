@@ -17,7 +17,6 @@ div.menu {
         height: 100%;
         padding: 1rem 0.5rem;
         border-radius: var(--p-border-radius);
-
         justify-items: center;
 
         img {
@@ -33,7 +32,6 @@ div.menu {
 
         div.menu {
             grid-area: menu;
-
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
@@ -43,14 +41,12 @@ div.menu {
 
     div.sec {
         background: color-mix(in srgb, var(--p-surface-card) 35%, transparent);
-
         border-radius: var(--p-border-radius);
-
         height: fit-content;
         width: var(--bar-width);
 
         &.hidden {
-            width: 0%;
+            width: 0;
         }
     }
 }

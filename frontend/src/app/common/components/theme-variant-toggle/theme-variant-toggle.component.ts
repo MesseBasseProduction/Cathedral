@@ -9,7 +9,7 @@ import { map, tap } from 'rxjs'
     standalone: true,
     imports: [ToggleButtonModule, ReactiveFormsModule],
     templateUrl: './theme-variant-toggle.component.html',
-    styleUrl: './theme-variant-toggle.component.css',
+    styleUrl: './theme-variant-toggle.component.scss',
 })
 export class ThemeVariantToggleComponent {
     public readonly themeService = inject(ThemeService)

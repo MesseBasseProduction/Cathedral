@@ -16,7 +16,7 @@ type LoginFormType = {
     standalone: true,
     imports: [ReactiveFormsModule, ProgressSpinnerModule, TextInputComponent, ButtonModule],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.css',
+    styleUrl: './login.component.scss',
 })
 export class LoginComponent {
     private readonly fb = inject(FormBuilder)

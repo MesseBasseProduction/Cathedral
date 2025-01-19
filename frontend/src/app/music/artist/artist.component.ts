@@ -11,7 +11,7 @@ import { JsonPipe } from '@angular/common'
     standalone: true,
     imports: [ArtistListComponent, ArtistCreateComponent, ArtistDetailComponent, JsonPipe],
     templateUrl: './artist.component.html',
-    styleUrl: './artist.component.css',
+    styleUrl: './artist.component.scss',
 })
 export class ArtistComponent implements OnInit {
     public readonly artistService = inject(ArtistService)

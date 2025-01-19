@@ -19,7 +19,7 @@ import { Artist } from '../../../common/models/artist.model'
         InputTextModule,
     ],
     templateUrl: './artist-list.component.html',
-    styleUrl: './artist-list.component.css',
+    styleUrl: './artist-list.component.scss',
 })
 export class ArtistListComponent {
     mode = model<'detail' | 'create' | 'update' | undefined>()

@@ -8,7 +8,7 @@ import { InputTextModule } from 'primeng/inputtext'
     standalone: true,
     imports: [CommonModule, InputTextModule, ReactiveFormsModule],
     templateUrl: './text-input.component.html',
-    styleUrl: './text-input.component.css',
+    styleUrl: './text-input.component.scss',
 })
 export class TextInputComponent {
     @Input({ required: true }) label!: string

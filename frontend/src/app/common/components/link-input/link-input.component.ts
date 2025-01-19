@@ -29,7 +29,7 @@ type LinkForm = {
         },
     ],
     templateUrl: './link-input.component.html',
-    styleUrl: './link-input.component.css',
+    styleUrl: './link-input.component.scss',
 })
 export class LinkInputComponent implements ControlValueAccessor {
     private readonly fb = inject(FormBuilder)

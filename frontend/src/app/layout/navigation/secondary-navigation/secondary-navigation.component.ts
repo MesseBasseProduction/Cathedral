@@ -20,7 +20,7 @@ type MenuItem = {
     standalone: true,
     imports: [RouterLink, RouterLinkActive],
     templateUrl: './secondary-navigation.component.html',
-    styleUrl: './secondary-navigation.component.css',
+    styleUrl: './secondary-navigation.component.scss',
 })
 export class SecondaryNavigationComponent implements OnInit {
     private router = inject(Router)

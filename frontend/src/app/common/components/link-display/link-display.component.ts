@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common'
     standalone: true,
     imports: [CommonModule],
     templateUrl: './link-display.component.html',
-    styleUrl: './link-display.component.css',
+    styleUrl: './link-display.component.scss',
 })
 export class LinkDisplayComponent {
     link = input.required<Link>()

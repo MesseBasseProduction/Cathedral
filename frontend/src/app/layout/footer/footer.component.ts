@@ -6,6 +6,6 @@ import { ToastModule } from 'primeng/toast'
     standalone: true,
     imports: [ToastModule],
     templateUrl: './footer.component.html',
-    styleUrl: './footer.component.css',
+    styleUrl: './footer.component.scss',
 })
 export class FooterComponent {}

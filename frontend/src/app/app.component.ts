@@ -9,6 +9,6 @@ import { BreadcrumbsComponent } from './layout/breadcrumbs/breadcrumbs.component
     standalone: true,
     imports: [RouterOutlet, BreadcrumbsComponent, HeaderComponent, FooterComponent],
     templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
+    styleUrl: './app.component.scss',
 })
 export class AppComponent {}

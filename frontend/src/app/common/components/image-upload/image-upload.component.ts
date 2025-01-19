@@ -17,7 +17,7 @@ type Files = string | string[]
         },
     ],
     templateUrl: './image-upload.component.html',
-    styleUrl: './image-upload.component.css',
+    styleUrl: './image-upload.component.scss',
 })
 export class ImageUploadComponent implements ControlValueAccessor, OnInit {
     multiple = input.required<boolean>()

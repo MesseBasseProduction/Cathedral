@@ -47,7 +47,7 @@ type CreateForm = {
         ProgressSpinnerModule,
     ],
     templateUrl: './artist-create.component.html',
-    styleUrl: './artist-create.component.css',
+    styleUrl: './artist-create.component.scss',
 })
 export class ArtistCreateComponent {
     mode = input.required<'create' | 'update'>()

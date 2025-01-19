@@ -30,7 +30,7 @@ type DescriptionForm = {
         },
     ],
     templateUrl: './description-input.component.html',
-    styleUrl: './description-input.component.css',
+    styleUrl: './description-input.component.scss',
 })
 export class DescriptionInputComponent implements ControlValueAccessor {
     private readonly fb = inject(FormBuilder)

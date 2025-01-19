@@ -10,7 +10,7 @@ import { distinctUntilChanged, filter } from 'rxjs'
     standalone: true,
     imports: [BreadcrumbModule],
     templateUrl: './breadcrumbs.component.html',
-    styleUrl: './breadcrumbs.component.css',
+    styleUrl: './breadcrumbs.component.scss',
 })
 export class BreadcrumbsComponent implements OnInit {
     private router = inject(Router)

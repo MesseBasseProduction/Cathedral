@@ -7,7 +7,7 @@ import { DropdownModule } from 'primeng/dropdown'
     standalone: true,
     imports: [DropdownModule, ReactiveFormsModule],
     templateUrl: './select-input.component.html',
-    styleUrl: './select-input.component.css',
+    styleUrl: './select-input.component.scss',
 })
 export class SelectInputComponent {
     @Input({ required: true }) label!: string

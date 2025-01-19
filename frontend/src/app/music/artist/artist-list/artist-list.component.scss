@@ -12,7 +12,7 @@ div.artist-grid {
         --pic-ratio: 910/512;
 
         &:not(:first-child) {
-            border-top: 1px solid var(--p-surface-border);
+            border-top: 1px solid var(--p-surface-card);
         }
 
         display: grid;

@@ -24,7 +24,7 @@ import { RouterLink } from '@angular/router'
         ThemeVariantToggleComponent,
     ],
     templateUrl: './header.component.html',
-    styleUrl: './header.component.css',
+    styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
     public readonly authService = inject(AuthService)
