@@ -8,7 +8,7 @@ div.menu {
     --bar-width: var(--side-padding) * 2 + var(--logo-width);
 
     div.main {
-        background: var(--surface-card);
+        background: var(--p-surface-card);
         display: grid;
         grid-template:
             'logo' auto
@@ -16,7 +16,7 @@ div.menu {
             'menu' auto;
         height: 100%;
         padding: 1rem 0.5rem;
-        border-radius: var(--border-radius);
+        border-radius: var(--p-border-radius);
 
         justify-items: center;
 
@@ -42,9 +42,9 @@ div.menu {
     }
 
     div.sec {
-        background: color-mix(in srgb, var(--surface-card) 35%, transparent);
+        background: color-mix(in srgb, var(--p-surface-card) 35%, transparent);
 
-        border-radius: var(--border-radius);
+        border-radius: var(--p-border-radius);
 
         height: fit-content;
         width: var(--bar-width);

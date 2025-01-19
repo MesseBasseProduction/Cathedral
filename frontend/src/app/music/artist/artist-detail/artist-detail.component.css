@@ -2,9 +2,9 @@ div.container {
     --img-height: 20vh;
     --img-ratio: 910/512;
 
-    background-color: var(--surface-card);
+    background-color: var(--p-surface-card);
     padding: 1rem;
-    border-radius: var(--border-radius);
+    border-radius: var(--p-border-radius);
 
     display: grid;
     grid-template:

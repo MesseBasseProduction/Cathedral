@@ -4,11 +4,12 @@ import { ArtistService } from '../../common/services/music/artist.service'
 import { ArtistCreateComponent } from './artist-create/artist-create.component'
 import { ArtistDetailComponent } from './artist-detail/artist-detail.component'
 import { ArtistListComponent } from './artist-list/artist-list.component'
+import { JsonPipe } from '@angular/common'
 
 @Component({
     selector: 'app-artist',
     standalone: true,
-    imports: [ArtistListComponent, ArtistCreateComponent, ArtistDetailComponent],
+    imports: [ArtistListComponent, ArtistCreateComponent, ArtistDetailComponent, JsonPipe],
     templateUrl: './artist.component.html',
     styleUrl: './artist.component.css',
 })

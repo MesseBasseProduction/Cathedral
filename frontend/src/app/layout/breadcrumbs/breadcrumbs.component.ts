@@ -1,6 +1,6 @@
 import { TitleCasePipe } from '@angular/common'
-import { Component, OnInit, inject, signal } from '@angular/core'
-import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router'
+import { Component, inject, OnInit, signal } from '@angular/core'
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { MenuItem } from 'primeng/api'
 import { BreadcrumbModule } from 'primeng/breadcrumb'
 import { distinctUntilChanged, filter } from 'rxjs'
@@ -8,7 +8,7 @@ import { distinctUntilChanged, filter } from 'rxjs'
 @Component({
     selector: 'app-breadcrumbs',
     standalone: true,
-    imports: [RouterLink, BreadcrumbModule],
+    imports: [BreadcrumbModule],
     templateUrl: './breadcrumbs.component.html',
     styleUrl: './breadcrumbs.component.css',
 })

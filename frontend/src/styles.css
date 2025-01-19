@@ -31,7 +31,11 @@
 
 body {
     height: 100vh;
-    padding: 0px;
-    margin: 0px;
-    background: var(--surface-ground);
+    padding: 0;
+    margin: 0;
+    background: var(--p-surface-ground);
+
+    font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

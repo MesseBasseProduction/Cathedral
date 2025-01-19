@@ -12,14 +12,14 @@ div.secondary {
         align-items: center;
 
         text-decoration: none;
-        color: var(--text-color);
+        color: var(--p-text-color);
 
         &.active {
-            color: var(--primary-color);
+            color: var(--p-primary-color);
         }
 
         &:hover {
-            color: var(--primary-color);
+            color: var(--p-primary-color);
         }
     }
 }

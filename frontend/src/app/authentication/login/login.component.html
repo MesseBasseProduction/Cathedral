@@ -15,14 +15,17 @@
                     [parentForm]="loginForm"
                     [inputName]="'password'"></app-text-input>
             </div>
-            <p-button
-                label="Login"
-                severity="primary"
-                [raised]="true"
-                type="submit"
-                (click)="onSubmit()"
-                class="self-center"
-                [disabled]="loginForm.untouched || !loginForm.valid"></p-button>
+            <div>
+                <p-button
+                    label="Login"
+                    severity="primary"
+                    [raised]="true"
+                    type="submit"
+                    (click)="onSubmit()"
+                    class="self-center"
+                    [disabled]="loginForm.untouched || !loginForm.valid" />
+            </div>
+
             @if (authService.error()) {
                 <span>{{ authService.error()?.message }}</span>
             }

@@ -8,11 +8,10 @@ import {
     Validators,
 } from '@angular/forms'
 import { DropdownModule } from 'primeng/dropdown'
-import { InputTextareaModule } from 'primeng/inputtextarea'
 import { DescriptionLangEnum, DescriptionLangs } from '../../enums/description-lang.enum'
 import { Description } from '../../models/description.model'
-import { TextInputComponent } from '../text-input/text-input.component'
 import { SelectInputComponent } from '../select-input/select-input.component'
+import { TextareaModule } from 'primeng/textarea'
 
 type DescriptionForm = {
     lang: FormControl<DescriptionLangEnum | null>
@@ -22,13 +21,7 @@ type DescriptionForm = {
 @Component({
     selector: 'app-description-input',
     standalone: true,
-    imports: [
-        DropdownModule,
-        InputTextareaModule,
-        ReactiveFormsModule,
-        SelectInputComponent,
-        TextInputComponent,
-    ],
+    imports: [DropdownModule, TextareaModule, ReactiveFormsModule, SelectInputComponent],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -70,6 +63,7 @@ export class DescriptionInputComponent implements ControlValueAccessor {
     }
 
     setDisabledState(isDisabled: boolean): void {
-        isDisabled ? this.descriptionForm.disable() : this.descriptionForm.enable()
+        if (isDisabled) this.descriptionForm.disable()
+        else this.descriptionForm.enable()
     }
 }

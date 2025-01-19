@@ -11,13 +11,13 @@
         type="text"></app-text-input>
     <div class="genres">
         <label for="genres">Genres</label>
-        <p-chips id="genres" formControlName="genres"></p-chips>
+        <p-chip id="genres" formControlName="genres" />
     </div>
     <div formArrayName="descriptions">
         <p-fieldset legend="Description" [toggleable]="true">
             @for (desc of createForm.controls.descriptions.controls; track desc; let i = $index) {
                 @if (i !== 0) {
-                    <p-divider></p-divider>
+                    <p-divider />
                 }
                 <app-description-input [formControlName]="i"></app-description-input>
                 @if (i !== 0) {

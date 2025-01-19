@@ -2,10 +2,9 @@
     <header>
         <h2>Artists</h2>
     </header>
-    <app-artist-list
-        [artists]="artistService.entities()"
-        [(mode)]="mode"
-        [(artist)]="artist"></app-artist-list>
+    {{ artistService.entities() | json }}
+    <app-artist-list [artists]="artistService.entities()" [(mode)]="mode" [(artist)]="artist">
+    </app-artist-list>
     @switch (mode) {
         @case ('create') {
             <app-artist-create mode="create"></app-artist-create>

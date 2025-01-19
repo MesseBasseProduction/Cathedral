@@ -29,6 +29,7 @@ export class ThemeVariantToggleComponent {
     }
 
     onVariantToggle(variant: 'dark' | 'light') {
-        this.themeService.switchVariant(variant)
+        console.log(variant)
+        this.themeService.switchVariant()
     }
 }

@@ -20,7 +20,7 @@ type LinkForm = {
 @Component({
     selector: 'app-link-input',
     standalone: true,
-    imports: [ReactiveFormsModule, SelectInputComponent, TextInputComponent, TitleCasePipe],
+    imports: [ReactiveFormsModule, SelectInputComponent, TextInputComponent],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -68,6 +68,7 @@ export class LinkInputComponent implements ControlValueAccessor {
     }
 
     setDisabledState(isDisabled: boolean): void {
-        isDisabled ? this.linkForm.disable() : this.linkForm.enable()
+        if (isDisabled) this.linkForm.disable()
+        else this.linkForm.enable()
     }
 }

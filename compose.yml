@@ -14,8 +14,7 @@ services:
       args:
         ARG_PORT: ${FRONTEND_PORT}
     ports:
-      # - ${FRONTEND_PORT}:${FRONTEND_PORT}
-      - 14200:${FRONTEND_PORT}
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
     volumes:
       - ./frontend:/frontend
     networks:
@@ -25,6 +24,7 @@ services:
     profiles:
       - deploy
       - dev
+      - mac
     container_name: ${BACKEND_NAME}
     hostname: ${BACKEND_NAME}
     build:
@@ -50,8 +50,7 @@ services:
       MAILJET_API_KEY: ${MAILJET_API_KEY}
       MAILJET_API_SECRET: ${MAILJET_API_SECRET}
     ports:
-      # - ${BACKEND_PORT}:${BACKEND_PORT}
-      - 18080:${BACKEND_PORT}
+      - ${BACKEND_PORT}:${BACKEND_PORT}
     volumes:
       - ./backend:/backend
     depends_on:
@@ -66,6 +65,7 @@ services:
     profiles:
       - deploy
       - dev
+      - mac
     image: postgres:${DB_POSTGRES_VERSION}
     container_name: ${DB_HOST}
     hostname: ${DB_HOST}
@@ -75,7 +75,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       PGPORT: ${DB_PORT}
     # ports:
-      # - ${DB_PORT}:${DB_PORT}
+    # - ${DB_PORT}:${DB_PORT}
     volumes:
       - type: volume
         source: mbp_cathedral_pg_data
@@ -93,12 +93,12 @@ services:
     profiles:
       - deploy
       - dev
+      - mac
     container_name: ${DB_ADMINER_NAME}
     hostname: ${DB_ADMINER_NAME}
     image: adminer
     ports:
-      # - ${DB_ADMINER_PORT}:8080
-      - 18081:8080
+      - ${DB_ADMINER_PORT}:8080
     depends_on:
       db:
         condition: service_healthy

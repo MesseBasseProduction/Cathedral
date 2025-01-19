@@ -12,11 +12,13 @@ div.artist-grid {
         --pic-ratio: 910/512;
 
         &:not(:first-child) {
-            border-top: 1px solid var(--surface-border);
+            border-top: 1px solid var(--p-surface-border);
         }
 
         display: grid;
-        grid-template-columns: [img-start] var(--pic-width) [img-end name-start] 1fr [name-end main-link-start] 1fr [main-link-end genres-start] 1fr [genres-end actions-start] 1fr [actions-end];
+        grid-template-columns:
+            [img-start] var(--pic-width)
+            [img-end name-start] 1fr [name-end main-link-start] 1fr [main-link-end genres-start] 1fr [genres-end actions-start] 1fr [actions-end];
         grid-template-rows: calc(var(--pic-width) * (1 / (var(--pic-ratio))));
 
         width: 100%;
@@ -58,11 +60,11 @@ div.artist-grid {
 }
 
 :host ::ng-deep .p-dataview .p-dataview-header {
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--p-border-radius);
+    border-top-right-radius: var(--p-border-radius);
 }
 
 :host ::ng-deep .p-dataview .p-dataview-content {
-    border-bottom-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--p-border-radius);
+    border-bottom-right-radius: var(--p-border-radius);
 }

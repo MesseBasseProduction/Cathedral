@@ -8,11 +8,13 @@ import { AuthService } from '../../common/services/auth.service'
 import { NavigationComponent } from '../navigation/navigation.component'
 import { DividerModule } from 'primeng/divider'
 import { SecondaryNavigationComponent } from '../navigation/secondary-navigation/secondary-navigation.component'
+import { RouterLink } from '@angular/router'
 
 @Component({
     selector: 'app-header',
     standalone: true,
     imports: [
+        RouterLink,
         CommonModule,
         ButtonModule,
         DividerModule,

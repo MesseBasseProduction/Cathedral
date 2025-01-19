@@ -33,8 +33,10 @@ export class ThemeService {
             .subscribe(variant => this.state.update(state => ({ ...state, variant: variant })))
 
         effect(() => {
-            const themeLink = this.document.getElementById('app-theme') as HTMLLinkElement
-            themeLink.href = `${this.currentTheme()}-${this.variant()}.css`
+            // const html = this.document.querySelector('html')
+            // html?.classList.
+            // const themeLink = this.document.getElementById('app-theme') as HTMLLinkElement
+            // themeLink.href = `${this.currentTheme()}-${this.variant()}.css`
         })
     }
 
@@ -42,7 +44,11 @@ export class ThemeService {
         this.changeTheme$.next(theme)
     }
 
-    public switchVariant(variant: Variant): void {
-        this.changeVariant$.next(variant)
+    public switchVariant(): void {
+        const html = document.querySelector('html')
+        if (!html) return
+
+        html.classList.toggle('dark-mode')
+        // this.changeVariant$.next(variant)
     }
 }

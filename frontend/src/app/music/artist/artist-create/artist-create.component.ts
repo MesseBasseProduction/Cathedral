@@ -7,7 +7,7 @@ import {
     Validators,
 } from '@angular/forms'
 import { ButtonModule } from 'primeng/button'
-import { ChipsModule } from 'primeng/chips'
+import { ChipModule } from 'primeng/chip'
 import { DividerModule } from 'primeng/divider'
 import { FieldsetModule } from 'primeng/fieldset'
 import { InputTextModule } from 'primeng/inputtext'
@@ -36,7 +36,7 @@ type CreateForm = {
     imports: [
         ReactiveFormsModule,
         TextInputComponent,
-        ChipsModule,
+        ChipModule,
         InputTextModule,
         FieldsetModule,
         DividerModule,
