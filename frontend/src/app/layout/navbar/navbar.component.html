@@ -1,0 +1,19 @@
+<p-menu [model]="menuItems" styleClass="navbar-menu" [dt]="menuStyle">
+    <ng-template #start>
+        <div class="menu-header">
+            <img src="assets/logo.png" alt="Cathedral" class="menu-header__logo" />
+            <h1 class="menu-header__title">Cathedral</h1>
+        </div>
+    </ng-template>
+    <ng-template #item let-item>
+        <a
+            [routerLink]="item.routerLink"
+            routerLinkActive="active"
+            class="p-menu-item-link navbar-link">
+            @if (item.icon) {
+                <span class="material-symbols-outlined">{{ item.icon }}</span>
+            }
+            {{ item.label }}
+        </a>
+    </ng-template>
+</p-menu>

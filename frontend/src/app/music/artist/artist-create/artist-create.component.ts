@@ -20,6 +20,7 @@ import { Artist } from '../../../common/models/artist.model'
 import { Description } from '../../../common/models/description.model'
 import { Link } from '../../../common/models/link.model'
 import { ArtistService } from '../../../common/services/music/artist.service'
+import { AutoCompleteModule } from 'primeng/autocomplete'
 
 type CreateForm = {
     name: FormControl<string>
@@ -45,6 +46,7 @@ type CreateForm = {
         ButtonModule,
         ImageUploadComponent,
         ProgressSpinnerModule,
+        AutoCompleteModule,
     ],
     templateUrl: './artist-create.component.html',
     styleUrl: './artist-create.component.scss',

@@ -22,6 +22,10 @@ export class BreadcrumbsComponent implements OnInit {
     }
     public breadcrumbItems = signal<MenuItem[]>([])
 
+    breadcrumbsStyle = {
+        background: 'none',
+    }
+
     ngOnInit() {
         this.router.events
             .pipe(

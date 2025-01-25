@@ -1,17 +1,10 @@
 <form [formGroup]="createForm">
-    <app-text-input
-        inputName="name"
-        [parentForm]="createForm"
-        label="Name"
-        type="text"></app-text-input>
-    <app-text-input
-        inputName="mainLink"
-        [parentForm]="createForm"
-        label="Main Link"
-        type="text"></app-text-input>
+    <app-text-input inputName="name" [parentForm]="createForm" label="Name" type="text" />
+    <app-text-input inputName="mainLink" [parentForm]="createForm" label="Main Link" type="text" />
     <div class="genres">
         <label for="genres">Genres</label>
-        <p-chip id="genres" formControlName="genres" />
+        <!--        <p-chip id="genres" formControlName="genres" />-->
+        <p-autocomplete id="genres" formControlName="genres" multiple typeahead></p-autocomplete>
     </div>
     <div formArrayName="descriptions">
         <p-fieldset legend="Description" [toggleable]="true">

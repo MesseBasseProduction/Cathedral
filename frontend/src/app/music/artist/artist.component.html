@@ -2,7 +2,7 @@
     <header>
         <h2>Artists</h2>
     </header>
-    {{ artistService.entities() | json }}
+
     <app-artist-list [artists]="artistService.entities()" [(mode)]="mode" [(artist)]="artist">
     </app-artist-list>
     @switch (mode) {

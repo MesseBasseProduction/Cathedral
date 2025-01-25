@@ -1,9 +1,0 @@
-@if (userService.user()) {
-    <nav>
-        @for (item of menuItems; track $index) {
-            <a [routerLink]="[item.url]" routerLinkActive="active">
-                <span class="material-symbols-outlined">{{ item.icon_name }} </span>{{ item.label }}
-            </a>
-        }
-    </nav>
-}

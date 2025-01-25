@@ -1,39 +1,21 @@
 div.container {
-    --container-gap: 0.5rem;
-    --container-padding: 5px;
-    --bread-height: 4rem;
-    --foot-height: 2rem;
-
+    height: 100%;
     display: grid;
     grid-template:
-        'head bread' 3rem
-        'head main' calc(
-            100% -
-                (
-                    var(--container-gap) + 2 * var(--container-padding) + var(--bread-height) +
-                        var(--foot-height)
-                )
-        )
-        'foot foot' 3rem / auto 1fr;
+        'nav head' 3rem
+        'nav main' 1fr
+        / auto 1fr;
 
-    gap: 0.5rem;
-
-    height: 100%;
-    padding: 5px;
+    app-navbar {
+        grid-area: nav;
+    }
 
     app-header {
         grid-area: head;
     }
 
-    app-breadcrumbs {
-        grid-area: bread;
-    }
-
     main {
         grid-area: main;
-    }
-
-    app-footer {
-        grid-area: foot;
+        padding: 1rem;
     }
 }

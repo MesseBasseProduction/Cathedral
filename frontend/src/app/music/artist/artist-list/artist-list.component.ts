@@ -25,8 +25,7 @@ export class ArtistListComponent {
     mode = model<'detail' | 'create' | 'update' | undefined>()
     artist = model<Artist>()
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public artists = input.required<any>()
+    public artists = input.required<Artist[]>()
     public search = ''
 
     onAdd() {

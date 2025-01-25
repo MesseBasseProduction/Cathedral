@@ -1,20 +1,20 @@
 <p-dataView #artistView [value]="artists()" filterBy="name">
-    <ng-template pTemplate="header">
+    <ng-template #header>
         <div class="artist-grid-header">
-            <p-iconField iconPosition="left">
-                <p-inputIcon styleClass="pi pi-search" />
+            <p-iconfield iconPosition="left">
+                <p-inputicon styleClass="pi pi-search" />
                 <input
                     pInputText
                     type="search"
                     (input)="artistView.filter($any($event).target.value)"
                     placeholder="Search by name" />
-            </p-iconField>
+            </p-iconfield>
             <p-button icon="pi pi-plus" label="Add" (onClick)="onAdd()"></p-button>
         </div>
     </ng-template>
-    <ng-template pTemplate="list" let-artists>
+    <ng-template #list let-items>
         <div class="artist-grid">
-            @for (artist of artists; track artist; let i = $index) {
+            @for (artist of items; track artist; let i = $index) {
                 <div class="artist-row">
                     <img class="artist-pic" [alt]="artist.name" [src]="artist.image" />
                     <div class="artist-name">{{ artist.name }}</div>

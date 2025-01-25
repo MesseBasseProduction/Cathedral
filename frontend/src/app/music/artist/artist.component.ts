@@ -1,15 +1,14 @@
-import { Component, OnInit, inject } from '@angular/core'
+import { Component, inject, OnInit } from '@angular/core'
 import { Artist } from '../../common/models/artist.model'
 import { ArtistService } from '../../common/services/music/artist.service'
 import { ArtistCreateComponent } from './artist-create/artist-create.component'
 import { ArtistDetailComponent } from './artist-detail/artist-detail.component'
 import { ArtistListComponent } from './artist-list/artist-list.component'
-import { JsonPipe } from '@angular/common'
 
 @Component({
     selector: 'app-artist',
     standalone: true,
-    imports: [ArtistListComponent, ArtistCreateComponent, ArtistDetailComponent, JsonPipe],
+    imports: [ArtistListComponent, ArtistCreateComponent, ArtistDetailComponent],
     templateUrl: './artist.component.html',
     styleUrl: './artist.component.scss',
 })

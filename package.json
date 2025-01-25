@@ -9,7 +9,8 @@
   "scripts": {
     "prepare": "husky",
     "docker:build": "docker compose --env-file ./.conf/development/conf.env --profile dev build",
-    "docker:up": "docker compose --env-file ./.conf/development/conf.env --profile dev up"
+    "docker:up": "docker compose --env-file ./.conf/development/conf.env --profile dev up",
+    "start": "cd frontend && yarn start"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
