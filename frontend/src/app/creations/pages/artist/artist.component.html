@@ -1,0 +1,20 @@
+<app-title type="main">Artist</app-title>
+
+<div class="container">
+    <app-artist-list [artists]="artistService.entities()" [(mode)]="mode" [(artist)]="artist">
+    </app-artist-list>
+    @switch (mode) {
+        @case ('create') {
+            <app-artist-create mode="create"></app-artist-create>
+        }
+        @case ('update') {
+            <app-artist-create mode="update" [artist]="artist"></app-artist-create>
+        }
+        @case ('detail') {
+            @if (artist) {
+                <app-artist-detail [artist]="artist"></app-artist-detail>
+            }
+        }
+        @default {}
+    }
+</div>

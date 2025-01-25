@@ -1,0 +1,15 @@
+div.container {
+    max-height: 100%;
+
+    //app-artist-list {
+    //    grid-column: span 1 / span 1;
+    //    grid-row: content;
+    //}
+
+    app-artist-create,
+    app-artist-detail {
+        //grid-column: span 1 / span 1;
+        //grid-row: content;
+        overflow-y: scroll;
+    }
+}

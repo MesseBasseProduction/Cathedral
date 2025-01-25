@@ -1,0 +1,15 @@
+@switch (type()) {
+    @case ('main') {
+        <h1><ng-container [ngTemplateOutlet]="content"></ng-container></h1>
+    }
+    @case ('secondary') {
+        <h2><ng-container [ngTemplateOutlet]="content"></ng-container></h2>
+    }
+    @case ('tertiary') {
+        <h3><ng-container [ngTemplateOutlet]="content"></ng-container></h3>
+    }
+}
+
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router'
-import { authGuard } from './common/guards/auth.guard'
+import { authGuard } from './authentication/guards/auth.guard'
 
 export const routes: Routes = [
     {
@@ -10,17 +10,21 @@ export const routes: Routes = [
     {
         path: 'login',
         loadComponent: () =>
-            import('./authentication/login/login.component').then(c => c.LoginComponent),
+            import('./authentication/pages/login/login.component').then(c => c.LoginComponent),
     },
     {
         path: 'register',
         loadComponent: () =>
-            import('./authentication/register/register.component').then(c => c.RegisterComponent),
+            import('./authentication/pages/register/register.component').then(
+                c => c.RegisterComponent
+            ),
     },
     {
         path: 'activate',
         loadComponent: () =>
-            import('./authentication/activate/activate.component').then(c => c.ActivateComponent),
+            import('./authentication/pages/activate/activate.component').then(
+                c => c.ActivateComponent
+            ),
     },
     {
         path: 'user',
@@ -30,17 +34,18 @@ export const routes: Routes = [
     {
         path: 'music',
         title: 'Music',
-        loadChildren: () => import('./music/music.routes').then(r => r.routes),
+        loadChildren: () => import('./creations/music.routes').then(r => r.routes),
         canActivate: [authGuard],
     },
     {
         path: 'apparel',
-        loadChildren: () => import('./apparel/apparel.routes').then(r => r.routes),
+        loadChildren: () => import('./merch/pages/apparel/apparel.routes').then(r => r.routes),
         canActivate: [authGuard],
     },
     {
         path: 'software',
-        loadChildren: () => import('./software/software.routes').then(r => r.routes),
+        loadChildren: () =>
+            import('./creations/pages/software/software.routes').then(r => r.routes),
         canActivate: [authGuard],
     },
     {
