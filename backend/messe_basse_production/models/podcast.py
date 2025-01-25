@@ -1,6 +1,7 @@
 from django.db import models
 
 from messe_basse_production.models.common import DescriptionModel, LinkModel
+from messe_basse_production.signals import remove_old_image, remove_deleted_image
 
 
 class Podcast(models.Model):
@@ -18,6 +19,10 @@ class PodcastEpisode(models.Model):
     date = models.DateField()
     image = models.ImageField(upload_to='images/podcast')
     link = models.URLField()
+
+
+models.signals.pre_save.connect(remove_old_image('image'), sender=PodcastEpisode)
+models.signals.post_delete.connect(remove_deleted_image('image'), sender=PodcastEpisode)
 
 
 class PodcastEpisodeDescription(DescriptionModel):

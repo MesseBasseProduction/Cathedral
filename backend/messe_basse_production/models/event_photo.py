@@ -16,6 +16,7 @@ class EventPhoto(models.Model):
 
 
 models.signals.pre_save.connect(remove_old_image('image'), sender=EventPhoto)
+models.signals.post_delete.connect(remove_deleted_image('image'), sender=EventPhoto)
 
 
 @receiver(models.signals.post_delete, sender=EventPhoto)

@@ -16,6 +16,7 @@ class Software(models.Model):
 
 
 models.signals.pre_save.connect(remove_old_image('image'), sender=Software)
+models.signals.post_delete.connect(remove_deleted_image('image'), sender=Software)
 
 
 @receiver(models.signals.post_delete, sender=Software)
@@ -41,6 +42,7 @@ class SoftwareArtist(models.Model):
 
 
 models.signals.pre_save.connect(remove_old_image('image'), sender=SoftwareArtist)
+models.signals.post_delete.connect(remove_deleted_image('image'), sender=SoftwareArtist)
 
 
 @receiver(models.signals.post_delete, sender=SoftwareArtist)

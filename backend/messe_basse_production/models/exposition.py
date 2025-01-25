@@ -26,6 +26,7 @@ class ExpositionPhoto(models.Model):
 
 
 models.signals.pre_save.connect(remove_old_image('image'), sender=ExpositionPhoto)
+models.signals.post_delete.connect(remove_deleted_image('image'), sender=ExpositionPhoto)
 
 
 @receiver(models.signals.post_delete, sender=ExpositionPhoto)
